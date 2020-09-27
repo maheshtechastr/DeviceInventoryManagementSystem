@@ -15,20 +15,6 @@ class AddEditDeviceFragment :
 
     override fun getViewModel() = AddEditDeviceViewModel::class.java
 
-//------------------------------------
-//    @Inject
-//    lateinit var viewModelFactory: ViewModelFactory
-    
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//        (requireActivity().application as MyApplication).appComponent.inject(this)
-//    }
-//
-//    override fun getViewModelF(): ViewModelProvider.Factory? {
-//        return viewModelFactory
-//    }
-//----------------------------
-
     override fun onCreateView(rootView: View) {
         Log.i(TAG, "viewModelFactory: $viewModelFactory")
 

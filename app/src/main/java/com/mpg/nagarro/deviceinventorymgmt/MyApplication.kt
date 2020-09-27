@@ -1,22 +1,29 @@
 package com.mpg.nagarro.deviceinventorymgmt
 
+import android.app.Activity
 import android.app.Application
-import android.util.Log
-import com.mpg.nagarro.deviceinventorymgmt.di.AppComponent
 import com.mpg.nagarro.deviceinventorymgmt.di.DaggerAppComponent
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import javax.inject.Inject
 
-class MyApplication : Application() {
-    private val TAG = "MyApplication"
-    lateinit var appComponent: AppComponent
+class MyApplication : Application(), HasActivityInjector {
+
+    @Inject
+    lateinit var androidInjector: DispatchingAndroidInjector<Activity>
+
     override fun onCreate() {
         super.onCreate()
-        appComponent = initDagger(this)
-        Log.d(TAG, "null() called");
+        DaggerAppComponent.builder()
+            .application(this)
+            .build()
+            .inject(this)
     }
 
-    private fun initDagger(application: Application): AppComponent {
-        return DaggerAppComponent
-            .factory()
-            .create(application.applicationContext)
+    /** Returns an [AndroidInjector] of [Activity]s.  */
+    override fun activityInjector(): DispatchingAndroidInjector<Activity> {
+        return androidInjector
     }
+
 }

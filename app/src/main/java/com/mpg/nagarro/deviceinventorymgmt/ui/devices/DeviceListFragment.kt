@@ -16,20 +16,8 @@ import javax.inject.Inject
 
 class DeviceListFragment : BaseFragment<DeviceListFragmentBinding, DeviceListViewModel>() {
 
-//    @Inject
-//    lateinit var viewModelFactory: ViewModelFactory
-
     @Inject
     lateinit var listAdapter: DeviceListAdapter
-
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//        (requireActivity().application as MyApplication).appComponent.inject(this)
-//    }
-//
-//    override fun getViewModelF(): ViewModelProvider.Factory? {
-//        return viewModelFactory
-//    }
 
     override fun getLayout() = R.layout.device_list_fragment
 

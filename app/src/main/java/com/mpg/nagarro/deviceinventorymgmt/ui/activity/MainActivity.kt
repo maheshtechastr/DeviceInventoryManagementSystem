@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -12,13 +13,38 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.mpg.nagarro.deviceinventorymgmt.R
+import dagger.android.AndroidInjection
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
 
-    private lateinit var drawerLayout: DrawerLayout
-    private lateinit var appBarConfiguration: AppBarConfiguration
+class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
+
+    /*
+     * Rather than injecting the ViewModelFactory
+     * in the activity, we are going to implement the
+     * HasActivityInjector and inject the ViewModelFactory
+     * into our Fragments
+     * */
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment?>
+
+    override fun supportFragmentInjector(): DispatchingAndroidInjector<Fragment?>? {
+        return dispatchingAndroidInjector
+    }
+
+    lateinit var drawerLayout: DrawerLayout
+    lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        /*
+       * We still need to inject this method
+       * into our activity so that our fragment can
+       * inject the ViewModelFactory
+       * */
+        AndroidInjection.inject(this);
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

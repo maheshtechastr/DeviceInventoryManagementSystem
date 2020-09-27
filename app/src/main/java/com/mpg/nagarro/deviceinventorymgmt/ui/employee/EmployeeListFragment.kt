@@ -14,20 +14,8 @@ import javax.inject.Inject
 
 class EmployeeListFragment : BaseFragment<EmployeeListFragmentBinding, EmployeeListViewModel>() {
 
-//    @Inject
-//    lateinit var viewModelFactory: ViewModelFactory
-
     @Inject
     lateinit var listAdapter: EmployeeListAdapter
-
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//        (requireActivity().application as MyApplication).appComponent.inject(this)
-//    }
-//
-//    override fun getViewModelF(): ViewModelProvider.Factory? {
-//        return viewModelFactory
-//    }
 
     override fun getLayout() = R.layout.employee_list_fragment
 

@@ -1,37 +1,20 @@
 package com.mpg.nagarro.deviceinventorymgmt.ui.inventory
 
-import android.content.Context
 import android.os.Handler
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
-import com.mpg.nagarro.deviceinventorymgmt.MyApplication
 import com.mpg.nagarro.deviceinventorymgmt.R
 import com.mpg.nagarro.deviceinventorymgmt.base.BaseFragment
 import com.mpg.nagarro.deviceinventorymgmt.databinding.DeviceListFragmentBinding
-import com.mpg.nagarro.deviceinventorymgmt.factory.ViewModelFactory
 import kotlinx.android.synthetic.main.device_allotment_fragment.*
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.inject.Inject
 
 class DeviceAllotmentFragment :
     BaseFragment<DeviceListFragmentBinding, DeviceAllotmentViewModel>(), View.OnClickListener,
     AdapterView.OnItemSelectedListener {
-
-//    @Inject
-//    lateinit var viewModelFactory: ViewModelFactory
-//
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//        (requireActivity().application as MyApplication).appComponent.inject(this)
-//    }
-//
-//    override fun getViewModelF(): ViewModelProvider.Factory? {
-//        return viewModelFactory
-//    }
 
     override fun getLayout() = R.layout.device_allotment_fragment
 

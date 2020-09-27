@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.mpg.nagarro.deviceinventorymgmt.BR
-import com.mpg.nagarro.deviceinventorymgmt.factory.ViewModelFactory
 import com.mpg.nagarro.deviceinventorymgmt.util.hideKeyboard
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -22,11 +21,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : ViewModel> : Fragment() {
     lateinit var viewModel: VM
 
     @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    open fun getViewModelF():ViewModelProvider.Factory?{
-        return null
-    }
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     abstract fun getLayout(): Int
     abstract fun getViewModel(): Class<VM>
@@ -35,13 +30,16 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : ViewModel> : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-
+        /*
+         *  Remember in our FragmentModule, we
+         * defined MovieListFragment injection? So we need
+         * to call this method in order to inject the
+         * ViewModelFactory into our Fragment
+         * */
         AndroidSupportInjection.inject(this)
 
-        viewModel = if (getViewModelF() != null)
-            ViewModelProviders.of(this, getViewModelF()).get(getViewModel())
-        else
-            ViewModelProviders.of(this).get(getViewModel())
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(getViewModel())
+
     }
 
     override fun onCreateView(

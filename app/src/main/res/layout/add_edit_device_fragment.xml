@@ -24,7 +24,7 @@
                 android:id="@+id/iv_header_img"
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
-                android:src="@drawable/mobile_inv"
+                android:src="@drawable/logo_no_fill"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

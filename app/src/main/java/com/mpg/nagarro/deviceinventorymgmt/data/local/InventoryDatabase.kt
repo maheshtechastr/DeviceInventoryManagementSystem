@@ -1,8 +1,6 @@
 package com.mpg.nagarro.deviceinventorymgmt.data.local
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceEntity
@@ -23,8 +21,8 @@ import com.mpg.nagarro.deviceinventorymgmt.data.entity.EmployeeEntity
 abstract class InventoryDatabase : RoomDatabase() {
     abstract fun inventoryDao(): InventoryDao
 
-    companion object {
-        // Singleton prevents multiple instances of database opening at the
+   /* companion object {
+            // Singleton prevents multiple instances of database opening at the
         // same time.
         @Volatile
         private var INSTANCE: InventoryDatabase? = null
@@ -44,6 +42,6 @@ abstract class InventoryDatabase : RoomDatabase() {
                 return instance
             }
         }
-    }
+    }*/
 
 }

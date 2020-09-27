@@ -28,7 +28,7 @@
         android:layout_width="@dimen/header_image_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/mobile_inv"
+        android:src="@drawable/logo_no_fill"
         android:contentDescription="@string/header_image_content_description" />
 
     <TextView
