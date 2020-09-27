@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mpg.nagarro.deviceinventorymgmt.ui.devices.AddEditDeviceViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/page_padding"
+            tools:context=".ui.devices.AddEditDeviceFragment">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_header_img"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:src="@drawable/mobile_inv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/deviceName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fab_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_header_img">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/device_name"
+                    android:text="@={viewModel.deviceName}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/deviceCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/deviceName"
+                app:layout_constraintTop_toBottomOf="@id/deviceName">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/device_count"
+                    android:inputType="number"
+                    android:minEms="1"
+                    android:text="@={viewModel.totalInventory}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_add_device"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/add_device"
+                app:layout_constraintEnd_toStartOf="@id/deviceCount"
+                app:layout_constraintTop_toBottomOf="@id/deviceCount" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

@@ -1,0 +1,53 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.kotlin_version = "1.4.10"
+    ext.navigationVersion = "2.3.0"
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.0.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+// Define versions in a single place
+ext {
+    // Sdk and tools
+    // Support library and architecture components support minSdk 21 and above.
+    minSdkVersion = 21
+    targetSdkVersion = 30
+    compileSdkVersion = 30
+
+    appVersionCode = 1
+    appVersionName = "1.0"
+    appPackageId = "com.mpg.nagarro.deviceinventorymgmt"
+
+    // App dependencies
+    roomVersion = '2.2.5'
+    archLifecycleVersion = '2.2.0'
+    coreTestingVersion = '2.1.0'
+    materialVersion = '1.2.1'
+    materialIconVersion = '1.1.5'
+    coroutines = '1.3.4'
+    cardVersion = '1.0.0'
+    recyclerViewVersion = '1.0.0'
+    appCompatVersion = '1.0.2'
+    androidXAnnotations = '1.0.1'
+    contraintVersion = '2.0.1'
+    daggerVersion = "2.27"
+}

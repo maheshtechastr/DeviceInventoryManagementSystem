@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">DeviceInventoryMgmt</string>
+    <string name="device_name">Device Name</string>
+    <string name="device_status">Device Status: AVAILABLE</string>
+    <string name="device_date">Returned Date: 26 Sept 2020</string>
+    <string name="employee_name">Employee Name</string>
+    <string name="assign">Assign</string>
+    <string name="device_count">Device Inventory</string>
+    <string name="email">Abc@xyz.com</string>
+    <string name="add_device">ADD</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="device_list">Device List</string>
+    <string name="employee_list">Employee List</string>
+    <string name="device_allotted_list">Device Allotted List</string>
+
+    <string name="navigation_view_header_title">Mahesh Gupta
+    Assignment Device Inventory Management System</string>
+    <!-- Content Descriptions -->
+    <string name="header_image_content_description">Device Inventory header image</string>
+
+    <string-array name="Languages">
+        <item>Java</item>
+        <item>Kotlin</item>
+        <item>Swift</item>
+        <item>Python</item>
+        <item>Scala</item>
+        <item>Perl</item>
+        <item>Javascript</item>
+        <item>Jquery</item>
+    </string-array>
+</resources>
