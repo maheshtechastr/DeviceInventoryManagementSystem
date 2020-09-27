@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewmodel"
+            type="com.mpg.nagarro.deviceinventorymgmt.ui.inventory.DeviceAllotmentViewModel" />
     </data>
 
     <ScrollView
@@ -13,48 +16,61 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:padding="@dimen/page_padding"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="@dimen/page_padding">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_header_img"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/logo_no_fill"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/device_name_txt_view"
+                android:id="@+id/tv_device_name_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:ellipsize="end"
-                android:text="Device Name:"
+                android:text="@string/device_name"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toStartOf="@+id/spinner"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/iv_header_img" />
 
-            <Spinner
+            <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/device_name_txt_view"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_device_name_label"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/device_name_txt_view" />
+                app:layout_constraintStart_toEndOf="@+id/tv_device_name_label" />
 
-
-            <AutoCompleteTextView
-                android:id="@+id/autoTextView"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/autoTextViewLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:ellipsize="end"
-                android:hint="Employee Name"
-                android:textColor="@android:color/black"
-                android:textColorHint="@android:color/black"
-                android:textSize="17sp"
+                android:layout_marginTop="@dimen/_20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/device_name_txt_view" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_device_name_label">
+
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoTextViewEmployeeName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:ellipsize="end"
+                    android:hint="@string/employee_name"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/date_picker_btn"
+                android:id="@+id/btn_date_picker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -62,57 +78,31 @@
                 android:textAllCaps="false"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/autoTextView" />
-
-            <TextView
-                android:id="@+id/selected_date_txt_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:ellipsize="end"
-                android:focusable="false"
-                android:text="Selected Date"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@+id/datePicker"
-                app:layout_constraintTop_toBottomOf="@+id/date_picker_btn" />
-
-
-            <DatePicker
-                android:id="@+id/datePicker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:datePickerMode="calendar"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selected_date_txt_view" />
-
+                app:layout_constraintTop_toBottomOf="@+id/autoTextViewLayout" />
 
             <Button
-                android:id="@+id/submit_btn"
+                android:id="@+id/btn_submit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Submit"
+                android:text="@string/submit"
                 android:textAllCaps="false"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toStartOf="@+id/cancel_btn"
+                app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/datePicker" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_date_picker" />
 
             <Button
-                android:id="@+id/cancel_btn"
+                android:id="@+id/btn_cancel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Cancel"
+                android:text="@string/cancel"
                 android:textAllCaps="false"
                 android:textColor="@android:color/black"
-                app:layout_constraintBaseline_toBaselineOf="@+id/submit_btn"
+                app:layout_constraintBaseline_toBaselineOf="@+id/btn_submit"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/submit_btn"
-                app:layout_constraintTop_toBottomOf="@+id/datePicker" />
+                app:layout_constraintStart_toEndOf="@+id/btn_submit"
+                app:layout_constraintTop_toBottomOf="@+id/btn_date_picker" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

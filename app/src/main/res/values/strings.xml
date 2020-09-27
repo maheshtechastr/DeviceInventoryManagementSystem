@@ -2,13 +2,14 @@
     <string name="app_name">DeviceInventoryMgmt</string>
     <string name="device_name">Device Name</string>
     <string name="device_status">Device Status: AVAILABLE</string>
-    <string name="device_date">Returned Date: 26 Sept 2020</string>
+    <string name="device_date">Returned Date: 26/09/2020</string>
     <string name="employee_name">Employee Name</string>
     <string name="assign">Assign</string>
     <string name="device_count">Device Inventory</string>
     <string name="email">Abc@xyz.com</string>
     <string name="add_device">ADD</string>
     <string name="cancel">Cancel</string>
+    <string name="submit">Submit</string>
 
     <string name="device_list">Device List</string>
     <string name="employee_list">Employee List</string>

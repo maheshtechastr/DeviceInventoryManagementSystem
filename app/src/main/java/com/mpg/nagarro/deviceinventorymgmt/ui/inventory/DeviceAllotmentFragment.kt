@@ -1,21 +1,21 @@
 package com.mpg.nagarro.deviceinventorymgmt.ui.inventory
 
-import android.os.Handler
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import com.mpg.nagarro.deviceinventorymgmt.R
 import com.mpg.nagarro.deviceinventorymgmt.base.BaseFragment
-import com.mpg.nagarro.deviceinventorymgmt.databinding.DeviceListFragmentBinding
-import kotlinx.android.synthetic.main.device_allotment_fragment.*
-import java.text.SimpleDateFormat
+import com.mpg.nagarro.deviceinventorymgmt.databinding.DeviceAllotmentFragmentBinding
+import com.mpg.nagarro.deviceinventorymgmt.util.hideKeyboard
 import java.util.*
 
 class DeviceAllotmentFragment :
-    BaseFragment<DeviceListFragmentBinding, DeviceAllotmentViewModel>(), View.OnClickListener,
+    BaseFragment<DeviceAllotmentFragmentBinding, DeviceAllotmentViewModel>(),
     AdapterView.OnItemSelectedListener {
-
+    private val TAG = "DeviceAllotmentFragment"
     override fun getLayout() = R.layout.device_allotment_fragment
 
     override fun getViewModel() = DeviceAllotmentViewModel::class.java
@@ -24,80 +24,76 @@ class DeviceAllotmentFragment :
         initViews()
     }
 
-    private var users =
-        arrayOf("Suresh Dasari", "Trishika Dasari", "Rohini Alavala", "Praveen Kumar", "Madhav Sai")
-    private var isDatePickerVisible = true
-
-    override fun onClick(view: View?) {
-        when (view?.id) {
-            R.id.date_picker_btn -> {
-                date_picker_btn.isEnabled = false
-                Handler().postDelayed({
-                    date_picker_btn.isEnabled = true
-
-                    isDatePickerVisible = !isDatePickerVisible
-                    if (isDatePickerVisible) {
-                        datePicker.visibility = View.VISIBLE
-                        selected_date_txt_view.visibility = View.VISIBLE
-                        selected_date_txt_view.text = getCurrentDate()
-                    } else {
-                        datePicker.visibility = View.GONE
-                    }
-                }, 100)
-            }
-        }
-    }
-
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        Toast.makeText(context, "Selected User: " + users[position], Toast.LENGTH_SHORT).show()
+        Log.d(TAG, "onItemSelected() called = $position")
     }
 
+    //
     override fun onNothingSelected(parent: AdapterView<*>?) {
-
+        Log.i(TAG, "onNothingSelected: $parent")
     }
 
-    private fun initViews(){
-        selected_date_txt_view.visibility = View.VISIBLE
-        selected_date_txt_view.text = getCurrentDate()
-        date_picker_btn.setOnClickListener(this)
-        datePickerInit()
-        spinnerInit()
-    }
+    private fun initViews() {
 
-    private fun datePickerInit(){
-        val today = Calendar.getInstance()
-        datePicker.init(
-            today.get(Calendar.YEAR), today.get(Calendar.MONTH),
-            today.get(Calendar.DAY_OF_MONTH)
-
-        ) { _myView, year, month, day ->
-
-            val month = month + 1
-
-            selected_date_txt_view.visibility = View.VISIBLE
-            selected_date_txt_view.text = "$day/$month/$year"
-            datePicker.visibility = View.GONE
-            isDatePickerVisible = !isDatePickerVisible
+        viewDataBinding.btnDatePicker.setOnClickListener {
+            showDatePicker()
         }
-        datePicker.minDate = System.currentTimeMillis()
 
+        viewModel.employeeName.observe(viewLifecycleOwner, {
+            autoCompleteInit(it)
+        })
+
+        viewModel.deviceName.observe(viewLifecycleOwner, {
+            spinnerInit(it)
+        })
     }
 
-    private fun spinnerInit(){
-        val adapter: ArrayAdapter<String> =
-            ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, users)
+    @SuppressLint("SetTextI18n")
+    private fun showDatePicker() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val dpd = DatePickerDialog(
+            requireContext(), DatePickerDialog.OnDateSetListener
+            { view, yearI, monthOfYear, dayOfMonth ->
+                // Display Selected date in textbox
+                val monthOfYear = monthOfYear + 1
+                viewDataBinding.btnDatePicker.text =
+                    StringBuffer("Returned Date: $dayOfMonth/$monthOfYear/$yearI")
+            },
+            year, month, day
+        )
+
+        dpd.datePicker.minDate = System.currentTimeMillis()
+        dpd.show()
+    }
+
+    /**
+     *Set Employee Name List*/
+    private fun autoCompleteInit(dataList: List<String>) {
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_list_item_activated_1,
+            dataList
+        )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter
-        spinner.onItemSelectedListener = this
+        viewDataBinding.autoTextViewEmployeeName.setAdapter(adapter)
+        viewDataBinding.autoTextViewEmployeeName.onItemSelectedListener = this
     }
 
-    private fun getCurrentDate(): String {
-        val c = Calendar.getInstance()
-
-        val df = SimpleDateFormat("dd/MM/yyy", Locale.getDefault())
-        val formattedDate: String = df.format(c.time)
-        // formattedDate have current date/time
-        // formattedDate have current date/time
-        return formattedDate
+    /**
+     *Set Device Name List*/
+    private fun spinnerInit(dataList: List<String>) {
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            dataList
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        viewDataBinding.spinner.adapter = adapter
+        viewDataBinding.spinner.onItemSelectedListener = this
     }
+
 }
