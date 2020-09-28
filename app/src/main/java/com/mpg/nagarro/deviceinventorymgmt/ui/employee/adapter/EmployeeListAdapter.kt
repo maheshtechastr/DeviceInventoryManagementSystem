@@ -16,10 +16,20 @@ import javax.inject.Inject
 class EmployeeListAdapter @Inject constructor() :
     ListAdapter<EmployeeEntity, EmployeeListAdapter.ViewHolder>(EmployeeDiffCallback()) {
 
+    interface OnItemClickListener {
+        fun onItemClicked(position: Int, item: EmployeeEntity)
+    }
+
+    private var itemClickListener: OnItemClickListener? = null
+
+    fun setItemClickListener(itemClicked: OnItemClickListener) {
+        this.itemClickListener = itemClicked
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
 
-        holder.bind(item)
+        holder.bind(item, itemClickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,9 +39,14 @@ class EmployeeListAdapter @Inject constructor() :
     class ViewHolder private constructor(val binding: EmployeeListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: EmployeeEntity) {
+        fun bind(item: EmployeeEntity, itemClickListener: OnItemClickListener?) {
 
             binding.employeeinfo = item
+
+            binding.ivDeleteRow.setOnClickListener {
+                itemClickListener?.onItemClicked(adapterPosition, item)
+            }
+
             binding.executePendingBindings()
         }
 

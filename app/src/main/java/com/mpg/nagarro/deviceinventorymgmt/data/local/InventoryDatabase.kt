@@ -20,28 +20,4 @@ import com.mpg.nagarro.deviceinventorymgmt.data.entity.EmployeeEntity
 @TypeConverters(Converters::class)
 abstract class InventoryDatabase : RoomDatabase() {
     abstract fun inventoryDao(): InventoryDao
-
-   /* companion object {
-            // Singleton prevents multiple instances of database opening at the
-        // same time.
-        @Volatile
-        private var INSTANCE: InventoryDatabase? = null
-
-        fun getDatabase(context: Context): InventoryDatabase {
-            val tempInstance = INSTANCE
-            if (tempInstance != null) {
-                return tempInstance
-            }
-            synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    InventoryDatabase::class.java,
-                    "device_inventory_database"
-                ).build()
-                INSTANCE = instance
-                return instance
-            }
-        }
-    }*/
-
 }

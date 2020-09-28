@@ -23,10 +23,8 @@ import android.app.DatePickerDialog
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
+import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
-import java.lang.Exception
 import java.util.*
 
 
@@ -66,9 +64,11 @@ fun View.showDatePicker() {
         { view, yearI, monthOfYear, dayOfMonth ->
             // Display Selected date in textbox
             val monthOfYear = monthOfYear + 1
-            when(this){
-                is Button -> this.text = StringBuffer("Returned Date: $dayOfMonth/$monthOfYear/$yearI")
-                is TextView -> this.text = StringBuffer("Returned Date: $dayOfMonth/$monthOfYear/$yearI")
+            when (this) {
+                is Button -> this.text =
+                    StringBuffer("Returned Date: $dayOfMonth/$monthOfYear/$yearI")
+                is TextView -> this.text =
+                    StringBuffer("Returned Date: $dayOfMonth/$monthOfYear/$yearI")
                 else -> throw Exception("Text Property not supported ")
 
             }
@@ -78,4 +78,8 @@ fun View.showDatePicker() {
 
     dpd.datePicker.minDate = System.currentTimeMillis() + 86400000
     dpd.show()
+}
+
+fun View.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this.context, message, Toast.LENGTH_SHORT).show()
 }

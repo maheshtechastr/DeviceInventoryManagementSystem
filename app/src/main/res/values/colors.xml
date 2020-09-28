@@ -5,6 +5,7 @@
     <color name="colorAccent">#2E7D32</color>
     <color name="colorTextPrimary">#000000</color>
     <color name="colorGrey">#757575</color>
+    <color name="lightGrey">#cccccc</color>
 
     <drawable name="completedTaskBackground">#CCCCCC</drawable>
 

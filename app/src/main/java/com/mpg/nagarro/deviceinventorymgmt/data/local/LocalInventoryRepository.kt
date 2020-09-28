@@ -37,26 +37,15 @@ class LocalInventoryRepository @Inject constructor(
 
     /**
      * To remove Employee record to Database*/
-    override fun deleteEmployee(employeeEntity: EmployeeEntity) {
-        TODO("Not yet implemented")
+    override suspend fun deleteEmployee(empId: String): Int {
+        return dao.deleteEmployeeById(empId)
     }
 
-    /**
-     * To update Employee information into Database*/
-    override fun updateEmployee(employeeEntity: EmployeeEntity) {
-        TODO("Not yet implemented")
-    }
-
-    /**
-     * To update Device information into Database*/
-    override fun updateDevice(deviceEntity: DeviceEntity) {
-        TODO("Not yet implemented")
-    }
 
     /**
      * To remove device record from Database*/
-    override fun deleteDevice(deviceEntity: DeviceEntity) {
-        TODO("Not yet implemented")
+    override suspend fun deleteDevice(deviceId: String): Int {
+        return dao.deleteDeviceById(deviceId)
     }
 
     /**
@@ -69,6 +58,18 @@ class LocalInventoryRepository @Inject constructor(
      * To add DeviceInventory information into Database*/
     override suspend fun addDeviceInventory(deviceInventory: DeviceInventory) {
         return dao.addDeviceInventory(deviceInventory)
+    }
+
+    /**
+     * To remove DeviceInventory record to Database*/
+    override suspend fun deleteDeviceInventory(empId: String): Int {
+        return dao.deleteDeviceInventoryById(empId)
+    }
+
+    /**
+     * To update DeviceInventory information into Database*/
+    override suspend fun updateDeviceInventory(deviceInventory: DeviceInventory) {
+        dao.updateInventory(deviceInventory)
     }
 
 

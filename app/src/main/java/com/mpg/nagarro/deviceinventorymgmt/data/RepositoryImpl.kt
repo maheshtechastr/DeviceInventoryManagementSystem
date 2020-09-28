@@ -37,27 +37,27 @@ class RepositoryImpl @Inject constructor(private val inventoryDataSource: Invent
 
     /**
      * To remove Employee record to Database*/
-    override fun deleteEmployee(employeeEntity: EmployeeEntity) {
-        TODO("Not yet implemented")
-    }
-
-    /**
-     * To update Employee information into Database*/
-    override fun updateEmployee(employeeEntity: EmployeeEntity) {
-        TODO("Not yet implemented")
-    }
-
-    /**
-     * To update Device information into Database*/
-    override fun updateDevice(deviceEntity: DeviceEntity) {
-        TODO("Not yet implemented")
+    override suspend fun deleteEmployee(empId: String) {
+        inventoryDataSource.deleteEmployee(empId)
     }
 
     /**
      * To remove device record from Database
-     * @param deviceEntity*/
-    override fun deleteDevice(deviceEntity: DeviceEntity) {
-        TODO("Not yet implemented")
+     * @param deviceId deviceId*/
+    override suspend fun deleteDevice(deviceId: String): Int {
+        return inventoryDataSource.deleteDevice(deviceId)
+    }
+
+    /**
+     * To remove DeviceInventory record to Database*/
+    override suspend fun deleteDeviceInventory(empId: String): Int {
+        return inventoryDataSource.deleteDeviceInventory(empId)
+    }
+
+    /**
+     * To update DeviceInventory information into Database*/
+    override suspend fun updateDeviceInventory(deviceInventory: DeviceInventory) {
+        inventoryDataSource.updateDeviceInventory(deviceInventory)
     }
 
     /**

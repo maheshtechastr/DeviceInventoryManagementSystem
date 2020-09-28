@@ -32,18 +32,26 @@ interface Repository {
 
     /**
      * To remove Employee record to Database*/
-    fun deleteEmployee(employeeEntity: EmployeeEntity)
+    suspend fun deleteEmployee(empId: String)
 
-    /**
-     * To update Employee information into Database*/
-    fun updateEmployee(employeeEntity: EmployeeEntity)
-
-    /**
-     * To update Device information into Database*/
-    fun updateDevice(deviceEntity: DeviceEntity)
+//    /**
+//     * To update Employee information into Database*/
+//    fun updateEmployee(employeeEntity: EmployeeEntity)
+//
+//    /**
+//     * To update Device information into Database*/
+//    fun updateDevice(deviceEntity: DeviceEntity)
 
     /**
      * To remove device record from Database*/
-    fun deleteDevice(deviceEntity: DeviceEntity)
+    suspend fun deleteDevice(deviceId: String): Int
+
+    /**
+     * To remove DeviceInventory record to Database*/
+    suspend fun deleteDeviceInventory(empId: String): Int
+
+    /**
+     * To update DeviceInventory information into Database*/
+    suspend fun updateDeviceInventory(deviceInventory: DeviceInventory)
 
 }

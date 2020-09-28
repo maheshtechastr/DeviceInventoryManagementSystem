@@ -5,34 +5,53 @@
     <data>
 
         <variable
+            name="viewmodel"
+            type="com.mpg.nagarro.deviceinventorymgmt.ui.devices.DeviceListViewModel" />
+
+        <variable
             name="deviceinfo"
             type="com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceEntity" />
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
+        style="@style/listItemCard"
         android:layout_width="match_parent"
-        android:layout_height="?android:listPreferredItemHeight">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/device_name"
-            android:text="@{deviceinfo.name}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:padding="10dp">
 
-        <TextView
-            android:id="@+id/tv_total_inventory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:hint="@string/device_count"
-            app:text="@{deviceinfo.totalDeviceCount}"
-            app:layout_constraintBaseline_toBaselineOf="@id/tv_name"
-            app:layout_constraintStart_toEndOf="@id/tv_name" />
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/device_name"
+                android:text="@{deviceinfo.name}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/tv_total_inventory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/device_count"
+                app:layout_constraintStart_toStartOf="@id/tv_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_name"
+                app:text="@{deviceinfo.totalDeviceCount}" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/iv_delete_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/add_device"
+                android:onClick="@{()->viewmodel.deleteRow(deviceinfo)}"
+                android:padding="5dp"
+                android:src="@drawable/trash_icon"
+                app:layout_constraintBaseline_toBaselineOf="@id/tv_name"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

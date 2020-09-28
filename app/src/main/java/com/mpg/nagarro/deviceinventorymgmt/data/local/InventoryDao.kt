@@ -1,10 +1,7 @@
 package com.mpg.nagarro.deviceinventorymgmt.data.local
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceEntity
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceInventory
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.EmployeeEntity
@@ -59,16 +56,76 @@ interface InventoryDao {
     @Query("SELECT * FROM DeviceInventory")
     fun observeDeviceInventories(): LiveData<List<DeviceInventory>>
 
-//
-//    /**
-//     * Observes a single Device.
-//     *
-//     * @param deviceId the Device id.
-//     * @return the Device with deviceId.
-//     */
-//    @Query("SELECT * FROM DeviceEntity WHERE deviceId = :deviceId")
-//    fun observeTaskById(deviceId: Int): LiveData<DeviceEntity>
-//
+    /**
+     * Delete a Device by id.
+     *
+     * @return the number of devices deleted. This should always be 1.
+     */
+    @Query("DELETE FROM DeviceEntity WHERE deviceId = :deviceId")
+    suspend fun deleteDeviceById(deviceId: String): Int
+
+    /**
+     * Delete a Employee by id.
+     *
+     * @return the number of Employees deleted. This should always be 1.
+     */
+    @Query("DELETE FROM EmployeeEntity WHERE empId = :empId")
+    suspend fun deleteEmployeeById(empId: String): Int
+
+
+    /**
+     * Observes a single Device.
+     *
+     * @param deviceId the Device id.
+     * @return the Device with deviceId.
+     */
+    @Query("SELECT * FROM DeviceEntity WHERE deviceId = :deviceId")
+    fun observeDeviceById(deviceId: Int): LiveData<DeviceEntity>
+
+    /**
+     * Observes a single Device.
+     *
+     * @param empId the Employee id.
+     * @return the Employee with empId.
+     */
+    @Query("SELECT * FROM EmployeeEntity WHERE empId = :empId")
+    fun observeEmployeeById(empId: Int): LiveData<EmployeeEntity>
+
+    /**
+     * Select a device by id.
+     *
+     * @param deviceId the device id.
+     * @return the Device with deviceId.
+     */
+    @Query("SELECT * FROM DeviceEntity WHERE deviceId = :deviceId")
+    suspend fun getDeviceById(deviceId: String): DeviceEntity?
+
+
+    /**
+     * Update the status of a DeviceInventory
+     *
+     * @param empId    id of the Employee
+     * @param status status to be updated
+     */
+    @Query("UPDATE DeviceInventory SET status = :status WHERE empId = :empId")
+    suspend fun updateInventoryStatus(empId: String, status: Int)
+
+    /**
+     * Update the status of a DeviceInventory
+     *
+     * @param deviceInventory    id of the DeviceInventory
+     */
+    @Update
+    suspend fun updateInventory(deviceInventory: DeviceInventory)
+
+    /**
+     * Delete a DeviceInventory by id.
+     *
+     * @return the number of DeviceInventory deleted. This should always be 1.
+     */
+    @Query("DELETE FROM EmployeeEntity WHERE empId = :empId")
+    suspend fun deleteDeviceInventoryById(empId: String): Int
+
 //    /**
 //     * Select all Devices from the Device table.
 //     *
@@ -77,42 +134,17 @@ interface InventoryDao {
 //    @Query("SELECT * FROM DeviceEntity")
 //    suspend fun getTasks(): List<DeviceEntity>
 //
-//    /**
-//     * Select a device by id.
-//     *
-//     * @param deviceId the device id.
-//     * @return the Device with deviceId.
-//     */
-//    @Query("SELECT * FROM DeviceEntity WHERE deviceId = :deviceId")
-//    suspend fun getDeviceById(deviceId: String): DeviceEntity?
-//
-//
-//
+
 //    /**
 //     * Update a device.
 //     *
-//     * @param task task to be updated
-//     * @return the number of tasks updated. This should always be 1.
+//     * @param deviceEntity Device to be updated
+//     * @return the number of Devices updated. This should always be 1.
 //     */
 //    @Update
-//    suspend fun updateTask(deviceEntity: DeviceEntity): Int
+//    suspend fun updateDevice(deviceEntity: DeviceEntity): Int
 
-//    /**
-//     * Update the complete status of a task
-//     *
-//     * @param taskId    id of the task
-//     * @param completed status to be updated
-//     */
-//    @Query("UPDATE tasks SET completed = :completed WHERE entryid = :taskId")
-//    suspend fun updateCompleted(taskId: String, completed: Boolean)
-//
-//    /**
-//     * Delete a task by id.
-//     *
-//     * @return the number of tasks deleted. This should always be 1.
-//     */
-//    @Query("DELETE FROM Tasks WHERE entryid = :taskId")
-//    suspend fun deleteTaskById(taskId: String): Int
+
 //
 //    /**
 //     * Delete all tasks.

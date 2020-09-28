@@ -26,7 +26,6 @@ class DeviceListFragment : BaseFragment<DeviceListFragmentBinding, DeviceListVie
     private val TAG = "DeviceListFragment"
 
     override fun onCreateView(rootView: View) {
-
         setUpAdapter()
 
         viewDataBinding.floatingActionButton.setOnClickListener {

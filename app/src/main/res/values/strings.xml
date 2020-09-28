@@ -8,7 +8,8 @@
     <string name="assign">Assign</string>
     <string name="device_count">Device Inventory</string>
     <string name="email">Abc@xyz.com</string>
-    <string name="add_device">ADD</string>
+    <string name="add_device">Add</string>
+    <string name="delete_device">Delete</string>
     <string name="cancel">Cancel</string>
     <string name="submit">Submit</string>
 
@@ -21,14 +22,5 @@
     <!-- Content Descriptions -->
     <string name="header_image_content_description">Device Inventory header image</string>
 
-    <string-array name="Languages">
-        <item>Java</item>
-        <item>Kotlin</item>
-        <item>Swift</item>
-        <item>Python</item>
-        <item>Scala</item>
-        <item>Perl</item>
-        <item>Javascript</item>
-        <item>Jquery</item>
-    </string-array>
+
 </resources>
