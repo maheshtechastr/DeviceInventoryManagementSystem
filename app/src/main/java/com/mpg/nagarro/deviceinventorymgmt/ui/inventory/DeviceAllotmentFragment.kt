@@ -1,7 +1,5 @@
 package com.mpg.nagarro.deviceinventorymgmt.ui.inventory
 
-import android.annotation.SuppressLint
-import android.app.DatePickerDialog
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -9,8 +7,7 @@ import android.widget.ArrayAdapter
 import com.mpg.nagarro.deviceinventorymgmt.R
 import com.mpg.nagarro.deviceinventorymgmt.base.BaseFragment
 import com.mpg.nagarro.deviceinventorymgmt.databinding.DeviceAllotmentFragmentBinding
-import com.mpg.nagarro.deviceinventorymgmt.util.hideKeyboard
-import java.util.*
+import com.mpg.nagarro.deviceinventorymgmt.util.showDatePicker
 
 class DeviceAllotmentFragment :
     BaseFragment<DeviceAllotmentFragmentBinding, DeviceAllotmentViewModel>(),
@@ -36,39 +33,43 @@ class DeviceAllotmentFragment :
     private fun initViews() {
 
         viewDataBinding.btnDatePicker.setOnClickListener {
-            showDatePicker()
+            it.showDatePicker()
         }
 
-        viewModel.employeeName.observe(viewLifecycleOwner, {
+        viewModel.employeeNames.observe(viewLifecycleOwner, {
             autoCompleteInit(it)
         })
 
-        viewModel.deviceName.observe(viewLifecycleOwner, {
+        viewModel.deviceNames.observe(viewLifecycleOwner, {
             spinnerInit(it)
         })
+
+        viewDataBinding.autoTextViewEmployeeName.threshold = 1
+        viewDataBinding.autoTextViewEmployeeName.setOnItemClickListener { parent, view, position, id ->
+            Log.i(TAG, "setOnItemClickListener: $view ===  $position")
+        }
+
+        viewDataBinding.btnSubmit.setOnClickListener {
+            saveData()
+        }
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun showDatePicker() {
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
+    private fun saveData() {
+        val deviceName = viewDataBinding.spinner.selectedItem.toString()
+        val employeeName = viewDataBinding.autoTextViewEmployeeName.editableText
+        val returnDate = viewDataBinding.btnDatePicker.text.split(":")[1].trim()
+        Log.i(TAG, "$employeeName==setOnItemClickListener=saveData: $deviceName")
+        Log.i(TAG, "$returnDate==setOnItemClickListener=saveData: $deviceName")
 
-        val dpd = DatePickerDialog(
-            requireContext(), DatePickerDialog.OnDateSetListener
-            { view, yearI, monthOfYear, dayOfMonth ->
-                // Display Selected date in textbox
-                val monthOfYear = monthOfYear + 1
-                viewDataBinding.btnDatePicker.text =
-                    StringBuffer("Returned Date: $dayOfMonth/$monthOfYear/$yearI")
-            },
-            year, month, day
-        )
+        val employeeEntity = viewModel.getEmployeeEntity(employeeName.toString())
+        val deviceEntity = viewModel.getDeviceEntity(deviceName)
 
-        dpd.datePicker.minDate = System.currentTimeMillis()
-        dpd.show()
+        if (employeeEntity == null || deviceEntity == null)
+            return
+
+        viewModel.saveData(deviceEntity, employeeEntity, returnDate)
     }
+
 
     /**
      *Set Employee Name List*/

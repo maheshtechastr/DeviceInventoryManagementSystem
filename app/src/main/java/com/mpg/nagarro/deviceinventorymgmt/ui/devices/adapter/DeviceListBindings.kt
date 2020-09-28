@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceEntity
+import java.util.*
 
 
 private const val TAG = "DeviceListBindings"
@@ -33,4 +34,8 @@ fun setItems(listView: RecyclerView, items: List<DeviceEntity>?) {
 @BindingAdapter("app:text")
 fun setStringFromAny(textView: TextView, any: Int) {
     textView.text = any.toString()
+}
+@BindingAdapter("app:text")
+fun setStringFromAny(textView: TextView, date: Date) {
+    textView.text = date.toString()
 }

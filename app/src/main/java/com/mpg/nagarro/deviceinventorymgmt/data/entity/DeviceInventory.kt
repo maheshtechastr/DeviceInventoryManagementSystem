@@ -10,5 +10,7 @@ data class DeviceInventory(
     val issueDate: Date,
     val returnDate: Date,
     @PrimaryKey val empId: Int,
-    val deviceId: Int
+    val deviceId: Int,
+    val empName: String,
+    val devName: String,
 )

@@ -43,6 +43,7 @@
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spinner"
                 android:layout_width="0dp"
+                android:prompt="@string/select_device"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"

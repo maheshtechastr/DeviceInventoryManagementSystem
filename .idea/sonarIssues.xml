@@ -8,12 +8,27 @@
             <set />
           </value>
         </entry>
+        <entry key="/fragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7291ece79e3a8a48ceb2eec5b413e27e/bindingcollectionadapter-3.1.1/jars/classes.jar!/me/tatarka/bindingcollectionadapter2/BindingCollectionAdapters.class">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/build.gradle">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/build/tmp/kapt3/stubs/debug/com/mpg/nagarro/deviceinventorymgmt/ui/devices/adapter/DeviceListBindingsKt.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/androidTest/java/com/mpg/nagarro/deviceinventorymgmt/ExampleInstrumentedTest.kt">
           <value>
             <set />
           </value>
@@ -338,12 +353,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/ui/inventory/adapter/ArrayAd.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/ui/inventory/adapter/AutoCompleteAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/ui/inventory/adapter/DeviceInventoryListAdapter.kt">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/ui/inventory/adapter/DeviceInventoryListBindings.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/ui/inventory/adapter/SpinnerDeviceCompleteAdapter.kt">
           <value>
             <set />
           </value>
@@ -379,6 +409,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/add_edit_employee_fragment.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/auto_list_item.xml">
           <value>
             <set />
           </value>
@@ -459,6 +494,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mpg/nagarro/deviceinventorymgmt/ExampleUnitTest.kt">
           <value>
             <set />
           </value>

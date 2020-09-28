@@ -25,7 +25,9 @@ class DeviceAllottedListFragment :
         viewDataBinding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.deviceAllotmentFragment)
         }
-
+        viewModel.deviceInventoryList.observe(viewLifecycleOwner, {
+            listAdapter.submitList(it)
+        })
     }
 
     private fun setupAdapter() {

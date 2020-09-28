@@ -8,16 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceInventory
 
 
-///**
-// * [BindingAdapter]s for the [DeviceInventory]s list.
-// */
-//@BindingAdapter("app:items")
-//fun setItems(listView: RecyclerView, items: List<DeviceInventory>?) {
-//    items?.let {
-//        (listView.adapter as DeviceInventoryListAdapter).submitList(items)
-//    }
-//}
-//
+/**
+ * [BindingAdapter]s for the [DeviceInventory]s list.
+ */
+@BindingAdapter("app:items")
+fun setItems(listView: RecyclerView, items: List<DeviceInventory>?) {
+    items?.let {
+        (listView.adapter as DeviceInventoryListAdapter).submitList(items)
+    }
+}
+
 //@BindingAdapter("app:completedTask")
 //fun setStyle(textView: TextView, enabled: Boolean) {
 //    if (enabled) {

@@ -19,13 +19,15 @@ package com.mpg.nagarro.deviceinventorymgmt.util
  * Extension functions and Binding Adapters.
  */
 
+import android.app.DatePickerDialog
 import android.view.View
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
+import android.widget.Button
+import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
+import java.lang.Exception
+import java.util.*
 
 
 /**
@@ -53,3 +55,27 @@ fun View.showSnackbar(snackbarText: String, timeLength: Int) {
 //    })
 //}
 
+fun View.showDatePicker() {
+    val calendar = Calendar.getInstance()
+    val year = calendar.get(Calendar.YEAR)
+    val month = calendar.get(Calendar.MONTH)
+    val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+    val dpd = DatePickerDialog(
+        this.context, DatePickerDialog.OnDateSetListener
+        { view, yearI, monthOfYear, dayOfMonth ->
+            // Display Selected date in textbox
+            val monthOfYear = monthOfYear + 1
+            when(this){
+                is Button -> this.text = StringBuffer("Returned Date: $dayOfMonth/$monthOfYear/$yearI")
+                is TextView -> this.text = StringBuffer("Returned Date: $dayOfMonth/$monthOfYear/$yearI")
+                else -> throw Exception("Text Property not supported ")
+
+            }
+        },
+        year, month, day
+    )
+
+    dpd.datePicker.minDate = System.currentTimeMillis() + 86400000
+    dpd.show()
+}
