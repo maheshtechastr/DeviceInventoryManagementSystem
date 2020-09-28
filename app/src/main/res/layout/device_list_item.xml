@@ -22,14 +22,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:padding="@dimen/constraints_padding">
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/device_name"
-                android:text="@{deviceinfo.name}"
+                android:text="@{@string/device_name +deviceinfo.name}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,7 +40,7 @@
                 android:hint="@string/device_count"
                 app:layout_constraintStart_toStartOf="@id/tv_name"
                 app:layout_constraintTop_toBottomOf="@id/tv_name"
-                app:text="@{deviceinfo.totalDeviceCount}" />
+                app:text="@{@string/device_count +deviceinfo.totalDeviceCount}" />
 
             <ImageView
                 android:id="@+id/iv_delete_row"

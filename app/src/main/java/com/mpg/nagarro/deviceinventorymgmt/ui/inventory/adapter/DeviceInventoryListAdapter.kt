@@ -14,13 +14,13 @@ import javax.inject.Inject
 /**
  * Adapter for the deviceInventory list. Has a reference to the [DeviceAllottedListViewModel] to send actions back to it.
  */
-class DeviceInventoryListAdapter @Inject constructor() :
+class DeviceInventoryListAdapter @Inject constructor(private val deviceAllottedListViewModel: DeviceAllottedListViewModel) :
     ListAdapter<DeviceInventory, ViewHolder>(DeviceInventoryDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
 
-        holder.bind(item)
+        holder.bind(item, deviceAllottedListViewModel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,8 +30,8 @@ class DeviceInventoryListAdapter @Inject constructor() :
     class ViewHolder private constructor(val binding: InventoryListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: DeviceInventory) {
-
+        fun bind(item: DeviceInventory, viewModel: DeviceAllottedListViewModel) {
+            binding.viewmodel = viewModel
             binding.deviceinfo = item
             binding.executePendingBindings()
         }

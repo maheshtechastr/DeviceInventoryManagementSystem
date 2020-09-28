@@ -18,14 +18,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:padding="@dimen/constraints_padding">
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/device_name"
-                android:text="@{employeeinfo.name}"
+                android:hint="@string/employee_name"
+                android:text="@{@string/employee_name + employeeinfo.name}"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@id/iv_delete_row"
                 app:layout_constraintStart_toStartOf="parent"
@@ -35,8 +35,8 @@
                 android:id="@+id/tv_employee_email"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/email"
-                android:text="@{employeeinfo.empEmail}"
+                android:hint="@string/emailId"
+                android:text="@{@string/email + employeeinfo.empEmail}"
                 app:layout_constraintEnd_toStartOf="@id/iv_delete_row"
                 app:layout_constraintStart_toStartOf="@id/tv_name"
                 app:layout_constraintTop_toBottomOf="@id/tv_name" />

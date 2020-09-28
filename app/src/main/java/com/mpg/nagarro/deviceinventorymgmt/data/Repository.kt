@@ -32,7 +32,7 @@ interface Repository {
 
     /**
      * To remove Employee record to Database*/
-    suspend fun deleteEmployee(empId: String)
+    suspend fun deleteEmployee(empId: Int):Int
 
 //    /**
 //     * To update Employee information into Database*/
@@ -44,11 +44,11 @@ interface Repository {
 
     /**
      * To remove device record from Database*/
-    suspend fun deleteDevice(deviceId: String): Int
+    suspend fun deleteDevice(deviceId: Int): Int
 
     /**
      * To remove DeviceInventory record to Database*/
-    suspend fun deleteDeviceInventory(empId: String): Int
+    suspend fun deleteDeviceInventory(empId: Int): Int
 
     /**
      * To update DeviceInventory information into Database*/

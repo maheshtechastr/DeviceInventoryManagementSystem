@@ -33,4 +33,5 @@ class DeviceAllottedListFragment :
     private fun setupAdapter() {
         viewDataBinding.inventoryList.adapter = listAdapter
     }
+
 }

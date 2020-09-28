@@ -21,6 +21,7 @@
 
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="page_padding">16dp</dimen>
+    <dimen name="constraints_padding">10dp</dimen>
 
     <dimen name="list_item_padding">8dp</dimen>
     <dimen name="header_height">192dp</dimen>

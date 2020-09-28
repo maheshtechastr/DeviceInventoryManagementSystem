@@ -1,11 +1,12 @@
-
 package com.mpg.nagarro.deviceinventorymgmt.ui.inventory.adapter
 
-import android.graphics.Paint
+import android.annotation.SuppressLint
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.mpg.nagarro.deviceinventorymgmt.R
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceInventory
+import com.mpg.nagarro.deviceinventorymgmt.util.Utils
 
 
 /**
@@ -16,6 +17,13 @@ fun setItems(listView: RecyclerView, items: List<DeviceInventory>?) {
     items?.let {
         (listView.adapter as DeviceInventoryListAdapter).submitList(items)
     }
+}
+
+@SuppressLint("SetTextI18n")
+@BindingAdapter("app:text")
+fun setStatus(textView: TextView, status: Int) {
+    textView.text =
+        textView.context.getString(R.string.device_status) + Utils.intDeviceStatusToEnum(status).name
 }
 
 //@BindingAdapter("app:completedTask")

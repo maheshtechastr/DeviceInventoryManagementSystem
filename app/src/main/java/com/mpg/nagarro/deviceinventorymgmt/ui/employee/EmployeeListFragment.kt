@@ -40,7 +40,7 @@ class EmployeeListFragment : BaseFragment<EmployeeListFragmentBinding, EmployeeL
 
     override fun onItemClicked(position: Int, item: EmployeeEntity) {
         viewDataBinding.root.showToast("$position Row : ${item.name}")
-
+        viewModel.deleteRow(item)
     }
 
 }

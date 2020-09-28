@@ -37,14 +37,14 @@ class LocalInventoryRepository @Inject constructor(
 
     /**
      * To remove Employee record to Database*/
-    override suspend fun deleteEmployee(empId: String): Int {
+    override suspend fun deleteEmployee(empId: Int): Int {
         return dao.deleteEmployeeById(empId)
     }
 
 
     /**
      * To remove device record from Database*/
-    override suspend fun deleteDevice(deviceId: String): Int {
+    override suspend fun deleteDevice(deviceId: Int): Int {
         return dao.deleteDeviceById(deviceId)
     }
 
@@ -62,7 +62,7 @@ class LocalInventoryRepository @Inject constructor(
 
     /**
      * To remove DeviceInventory record to Database*/
-    override suspend fun deleteDeviceInventory(empId: String): Int {
+    override suspend fun deleteDeviceInventory(empId: Int): Int {
         return dao.deleteDeviceInventoryById(empId)
     }
 

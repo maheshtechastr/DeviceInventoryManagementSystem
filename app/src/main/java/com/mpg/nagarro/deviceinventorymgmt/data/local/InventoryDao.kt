@@ -62,7 +62,7 @@ interface InventoryDao {
      * @return the number of devices deleted. This should always be 1.
      */
     @Query("DELETE FROM DeviceEntity WHERE deviceId = :deviceId")
-    suspend fun deleteDeviceById(deviceId: String): Int
+    suspend fun deleteDeviceById(deviceId: Int): Int
 
     /**
      * Delete a Employee by id.
@@ -70,7 +70,7 @@ interface InventoryDao {
      * @return the number of Employees deleted. This should always be 1.
      */
     @Query("DELETE FROM EmployeeEntity WHERE empId = :empId")
-    suspend fun deleteEmployeeById(empId: String): Int
+    suspend fun deleteEmployeeById(empId: Int): Int
 
 
     /**
@@ -98,7 +98,7 @@ interface InventoryDao {
      * @return the Device with deviceId.
      */
     @Query("SELECT * FROM DeviceEntity WHERE deviceId = :deviceId")
-    suspend fun getDeviceById(deviceId: String): DeviceEntity?
+    suspend fun getDeviceById(deviceId: Int): DeviceEntity?
 
 
     /**
@@ -108,7 +108,7 @@ interface InventoryDao {
      * @param status status to be updated
      */
     @Query("UPDATE DeviceInventory SET status = :status WHERE empId = :empId")
-    suspend fun updateInventoryStatus(empId: String, status: Int)
+    suspend fun updateInventoryStatus(empId: Int, status: Int)
 
     /**
      * Update the status of a DeviceInventory
@@ -123,8 +123,8 @@ interface InventoryDao {
      *
      * @return the number of DeviceInventory deleted. This should always be 1.
      */
-    @Query("DELETE FROM EmployeeEntity WHERE empId = :empId")
-    suspend fun deleteDeviceInventoryById(empId: String): Int
+    @Query("DELETE FROM DeviceInventory WHERE empId = :empId")
+    suspend fun deleteDeviceInventoryById(empId: Int): Int
 
 //    /**
 //     * Select all Devices from the Device table.

@@ -5,26 +5,30 @@
     <data>
 
         <variable
+            name="viewmodel"
+            type="com.mpg.nagarro.deviceinventorymgmt.ui.inventory.DeviceAllottedListViewModel" />
+
+        <variable
             name="deviceinfo"
             type="com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceInventory" />
     </data>
 
     <androidx.cardview.widget.CardView
+        style="@style/listItemCard"
         android:layout_width="match_parent"
-        app:cardElevation="10dp"
-        android:layout_margin="5dp"
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:padding="5dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="@dimen/constraints_padding">
 
             <TextView
                 android:id="@+id/tv_device_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{deviceinfo.devName}"
+                android:hint="@string/device_name"
+                android:text="@{@string/device_name + deviceinfo.devName}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,26 +36,40 @@
                 android:id="@+id/tv_device_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/device_status"
+                android:hint="@string/device_status"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_device_name" />
+                app:layout_constraintTop_toBottomOf="@id/tv_device_name"
+                app:text="@{deviceinfo.status}" />
 
             <TextView
                 android:id="@+id/tv_employee_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@{deviceinfo.empName}"
-                app:layout_constraintBaseline_toBaselineOf="@id/tv_device_name"
-                app:layout_constraintStart_toEndOf="@id/tv_device_name" />
+
+                android:hint="@string/employee_name"
+                android:text="@{@string/employee_name + deviceinfo.empName}"
+                app:layout_constraintStart_toStartOf="@id/tv_device_status"
+                app:layout_constraintTop_toBottomOf="@id/tv_device_status" />
 
             <TextView
                 android:id="@+id/tv_device_returned_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:text="@{deviceinfo.returnDate}"
+                android:hint="@string/device_date"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_device_status" />
+                app:layout_constraintTop_toBottomOf="@id/tv_employee_name"
+                app:text="@{@string/device_date + deviceinfo.returnDate}" />
+
+            <ImageView
+                android:id="@+id/iv_delete_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/add_device"
+                android:onClick="@{()->viewmodel.deleteRow(deviceinfo)}"
+                android:padding="5dp"
+                android:src="@drawable/trash_icon"
+                app:layout_constraintBaseline_toBaselineOf="@id/tv_device_status"
+                app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>
