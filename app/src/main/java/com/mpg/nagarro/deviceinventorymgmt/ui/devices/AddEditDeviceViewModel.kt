@@ -24,13 +24,13 @@ class AddEditDeviceViewModel
 
         if (Utils.isNullOrEmpty(name))
             return
+        val totalInventory = getDeviceCount(inventory)
 
-        val deviceEntity = DeviceEntity(name!!, getDeviceCount(inventory))
+        val deviceEntity = DeviceEntity(name!!, totalInventory, totalInventory)
         viewModelScope.launch {
             repository.addDevice(deviceEntity)
         }
     }
-
 
 
     private fun getDeviceCount(totalC: String?): Int {

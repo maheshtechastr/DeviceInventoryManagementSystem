@@ -53,7 +53,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/device_count"
+                    android:hint="@string/total_inventory"
                     android:inputType="number"
                     android:minEms="1"
                     android:text="@={viewModel.totalInventory}" />

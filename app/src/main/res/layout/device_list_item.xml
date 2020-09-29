@@ -37,10 +37,19 @@
                 android:id="@+id/tv_total_inventory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/device_count"
+                android:hint="@string/total_inventory"
                 app:layout_constraintStart_toStartOf="@id/tv_name"
                 app:layout_constraintTop_toBottomOf="@id/tv_name"
-                app:text="@{@string/device_count +deviceinfo.totalDeviceCount}" />
+                app:text="@{@string/total_inventory +deviceinfo.totalInventory}" />
+
+            <TextView
+                android:id="@+id/tv_current_inventory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/current_inventory"
+                app:layout_constraintStart_toStartOf="@id/tv_total_inventory"
+                app:layout_constraintTop_toBottomOf="@id/tv_total_inventory"
+                app:text="@{@string/current_inventory +deviceinfo.currentAvailableInventory}" />
 
             <ImageView
                 android:id="@+id/iv_delete_row"

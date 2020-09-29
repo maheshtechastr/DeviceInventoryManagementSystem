@@ -7,12 +7,14 @@ import androidx.room.PrimaryKey
 @Entity
 data class DeviceEntity(
     val name: String,
-    val totalDeviceCount: Int = 1,
+    val totalInventory: Int,
+    val currentAvailableInventory: Int,
     @PrimaryKey(autoGenerate = true) val deviceId: Int,
 ) {
     constructor(
         name: String,
-        totalDeviceCount: Int = 1,
-    ) : this(name, totalDeviceCount, 0)
+        totalInventory: Int,
+        currentAvailableInventory: Int,
+    ) : this(name, totalInventory, currentAvailableInventory, 0)
 
 }

@@ -6,7 +6,8 @@
     <string name="device_date"><b>Returned Date: </b></string>
     <string name="employee_name"><b>Employee Name: </b></string>
     <string name="assign">Assign</string>
-    <string name="device_count"><b>Total Inventory: </b></string>
+    <string name="total_inventory"><b>Total Inventory: </b></string>
+    <string name="current_inventory"><b>Current Inventory: </b></string>
     <string name="email"><b>Email: </b></string>
     <string name="emailId">Abc@xyz.com</string>
     <string name="add_device">Add</string>

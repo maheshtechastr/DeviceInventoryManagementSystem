@@ -65,8 +65,6 @@ aapp/src/main/java/com/mpg/nagarro/deviceinventorymgmt/ui/employee/adapter/Emplo
 `app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/ui/inventory/DeviceAllottedListFragment.kt,9\3\9310e74d7038ceb94fcd6579064ee15603d63def
 v
 Fapp/src/main/java/com/mpg/nagarro/deviceinventorymgmt/MyApplication.kt,b\c\bcb3a38ea106f731478ac79bbdb7f5c269f5ac9e
-d
-4app/src/main/res/layout/add_edit_device_fragment.xml,9\f\9f0af933e3264509e5f47639aaeab374262e7dda
 V
 &app/src/main/res/layout/nav_header.xml,3\d\3ddf3f675715be5e38479657d36f3428ac264317
 <
