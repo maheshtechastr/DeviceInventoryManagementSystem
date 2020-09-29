@@ -11,11 +11,15 @@ interface DeviceInventoryRepository {
 
     /**
      * To remove DeviceInventory record to Database*/
-    suspend fun deleteDeviceInventory(empId: Int): Int
+    suspend fun deleteDeviceInventory(recordId: Int): Int
 
     /**
      * To update DeviceInventory information into Database*/
-    suspend fun updateDeviceInventory(deviceInventory: DeviceInventory)
+    suspend fun updateDeviceInventory(deviceInventory: DeviceInventory): Int
+
+    /**
+     * To remove DeviceInventory record to Database*/
+    suspend fun updateInventoryStatus(recordId: Int, status: Int): Int
 
     /**
      * To Fetch All DeviceInventory from Database*/

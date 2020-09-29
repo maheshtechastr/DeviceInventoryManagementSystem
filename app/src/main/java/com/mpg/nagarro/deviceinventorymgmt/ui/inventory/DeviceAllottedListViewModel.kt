@@ -16,7 +16,8 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
 
     fun deleteRow(deviceInventory: DeviceInventory) = viewModelScope.launch {
         Log.d(TAG, "deleteRow() called = ${deviceInventory.devName}")
-       val result =  repository.deleteDeviceInventory(deviceInventory.empId)
+        val result =
+            repository.deleteDeviceInventory(deviceInventory.recordId)
         Log.i(TAG, "deleteRow: result = $result");
     }
 }

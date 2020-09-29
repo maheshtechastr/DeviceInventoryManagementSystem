@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.navigation.fragment.findNavController
 import com.mpg.nagarro.deviceinventorymgmt.R
 import com.mpg.nagarro.deviceinventorymgmt.base.BaseFragment
 import com.mpg.nagarro.deviceinventorymgmt.databinding.DeviceAllotmentFragmentBinding
@@ -13,6 +14,7 @@ class DeviceAllotmentFragment :
     BaseFragment<DeviceAllotmentFragmentBinding, DeviceAllotmentViewModel>(),
     AdapterView.OnItemSelectedListener {
     private val TAG = "DeviceAllotmentFragment"
+
     override fun getLayout() = R.layout.device_allotment_fragment
 
     override fun getViewModel() = DeviceAllotmentViewModel::class.java
@@ -66,7 +68,6 @@ class DeviceAllotmentFragment :
 
         if (employeeEntity == null || deviceEntity == null)
             return
-
         viewModel.saveData(deviceEntity, employeeEntity, returnDate)
     }
 
@@ -82,6 +83,11 @@ class DeviceAllotmentFragment :
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         viewDataBinding.autoTextViewEmployeeName.setAdapter(adapter)
         viewDataBinding.autoTextViewEmployeeName.onItemSelectedListener = this
+
+        viewModel.isLoading.observe(viewLifecycleOwner, {
+            if (!it)
+                gotBack()
+        })
     }
 
     /**
@@ -97,4 +103,7 @@ class DeviceAllotmentFragment :
         viewDataBinding.spinner.onItemSelectedListener = this
     }
 
+    private fun gotBack() {
+        findNavController().popBackStack()
+    }
 }

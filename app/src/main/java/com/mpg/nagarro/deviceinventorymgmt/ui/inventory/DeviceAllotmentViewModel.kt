@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 class DeviceAllotmentViewModel @Inject constructor(private val repository: Repository) :
     BaseViewModel() {
-    private val devices: LiveData<List<DeviceEntity>> = repository.getDeviceList()
+    private val devices: LiveData<List<DeviceEntity>> = repository.observeAvailableDevices()
     val employees: LiveData<List<EmployeeEntity>> = repository.getEmployeeList()
 
     val employeeNames: LiveData<List<String>> = Transformations.map(employees) {
@@ -37,10 +37,14 @@ class DeviceAllotmentViewModel @Inject constructor(private val repository: Repos
         println("currentDate = $currentDate")
 
         val rdList = returnedDate.split("/")
-
+        if (rdList.size < 3)
+            return
         c.set(rdList[2].toInt(), rdList[1].toInt(), rdList[0].toInt())
         println("updatedDate = ${c.time}")
-        val status = Utils.enumToIntDeviceStatus(DeviceStatus.AVAILABLE)
+
+        val status = Utils.enumToIntDeviceStatus(DeviceStatus.ISSUED)
+
+        isLoading.value = true
 
         viewModelScope.launch {
             repository.addDeviceInventory(
@@ -54,6 +58,12 @@ class DeviceAllotmentViewModel @Inject constructor(private val repository: Repos
                     deviceEntity.name,
                 )
             )
+            /*Updated current Available inventory into DeviceEntity*/
+            repository.updateAvailableInventory(
+                deviceEntity.currentAvailableInventory - 1,
+                deviceEntity.deviceId
+            )
+            isLoading.value = false
         }
     }
 

@@ -82,6 +82,8 @@ interface InventoryDao {
      */
     @Query("UPDATE DeviceEntity SET currentAvailableInventory = :currentInventory WHERE deviceId = :deviceId")
     suspend fun updateAvailableInventory(currentInventory: Int, deviceId: Int): Int
+
+
     /**
      *
      *
@@ -146,13 +148,21 @@ interface InventoryDao {
     fun observeDeviceInventories(): LiveData<List<DeviceInventory>>
 
     /**
+     * Delete a DeviceInventory by id.
+     *@param recordId for recordId
+     * @return the number of DeviceInventory deleted. This should always be 1.
+     */
+    @Query("DELETE FROM DeviceInventory WHERE recordId = :recordId")
+    suspend fun deleteDeviceInventoryById(recordId: Int): Int
+
+    /**
      * Update the status of a DeviceInventory
      *
-     * @param empId    id of the Employee
+     * @param recordId    id of the Employee
      * @param status status to be updated
      */
-    @Query("UPDATE DeviceInventory SET status = :status WHERE empId = :empId")
-    suspend fun updateInventoryStatus(empId: Int, status: Int)
+    @Query("UPDATE DeviceInventory SET status = :status WHERE recordId = :recordId")
+    suspend fun updateInventoryStatus(recordId: Int, status: Int): Int
 
     /**
      * Update the status of a DeviceInventory
@@ -160,22 +170,12 @@ interface InventoryDao {
      * @param deviceInventory    id of the DeviceInventory
      */
     @Update
-    suspend fun updateInventory(deviceInventory: DeviceInventory)
-
-    /**
-     * Delete a DeviceInventory by id.
-     *
-     * @return the number of DeviceInventory deleted. This should always be 1.
-     */
-    @Query("DELETE FROM DeviceInventory WHERE empId = :empId")
-    suspend fun deleteDeviceInventoryById(empId: Int): Int
-
+    suspend fun updateInventory(deviceInventory: DeviceInventory): Int
 
     /**
      * Delete all tasks.
      */
     @Query("DELETE FROM DeviceInventory")
     suspend fun deleteDeviceInventories()
-
 
 }

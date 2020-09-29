@@ -67,14 +67,20 @@ class RepositoryImpl @Inject constructor(private val inventoryDataSource: Invent
 
     /**
      * To remove DeviceInventory record to Database*/
-    override suspend fun deleteDeviceInventory(empId: Int): Int {
-        return inventoryDataSource.deleteDeviceInventory(empId)
+    override suspend fun deleteDeviceInventory(recordId: Int): Int {
+        return inventoryDataSource.deleteDeviceInventory(recordId)
     }
 
     /**
      * To update DeviceInventory information into Database*/
-    override suspend fun updateDeviceInventory(deviceInventory: DeviceInventory) {
-        inventoryDataSource.updateDeviceInventory(deviceInventory)
+    override suspend fun updateDeviceInventory(deviceInventory: DeviceInventory): Int {
+        return inventoryDataSource.updateDeviceInventory(deviceInventory)
+    }
+
+    /**
+     * To remove DeviceInventory record to Database*/
+    override suspend fun updateInventoryStatus(recordId: Int, status: Int): Int {
+        return inventoryDataSource.updateInventoryStatus(recordId, status)
     }
 
     /**

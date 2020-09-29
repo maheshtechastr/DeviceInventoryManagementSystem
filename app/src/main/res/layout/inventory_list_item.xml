@@ -24,40 +24,41 @@
             android:padding="@dimen/constraints_padding">
 
             <TextView
-                android:id="@+id/tv_device_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/device_name"
-                android:text="@{@string/device_name + deviceinfo.devName}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_device_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/device_status"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_device_name"
-                app:text="@{deviceinfo.status}" />
-
-            <TextView
                 android:id="@+id/tv_employee_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
                 android:hint="@string/employee_name"
                 android:text="@{@string/employee_name + deviceinfo.empName}"
-                app:layout_constraintStart_toStartOf="@id/tv_device_status"
-                app:layout_constraintTop_toBottomOf="@id/tv_device_status" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_device_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/device_name"
+                android:text="@{@string/device_name + deviceinfo.devName}"
+                app:layout_constraintStart_toStartOf="@id/tv_employee_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_employee_name" />
+
+            <TextView
+                android:id="@+id/tv_device_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/device_status"
+                app:layout_constraintStart_toStartOf="@id/tv_device_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_device_name"
+                app:text="@{deviceinfo.status}" />
+
 
             <TextView
                 android:id="@+id/tv_device_returned_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/device_date"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_employee_name"
+                app:layout_constraintStart_toStartOf="@id/tv_device_status"
+                app:layout_constraintTop_toBottomOf="@id/tv_device_status"
                 app:text="@{@string/device_date + deviceinfo.returnDate}" />
 
             <ImageView
@@ -68,7 +69,7 @@
                 android:onClick="@{()->viewmodel.deleteRow(deviceinfo)}"
                 android:padding="5dp"
                 android:src="@drawable/trash_icon"
-                app:layout_constraintBaseline_toBaselineOf="@id/tv_device_status"
+                app:layout_constraintBaseline_toBaselineOf="@id/tv_device_name"
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

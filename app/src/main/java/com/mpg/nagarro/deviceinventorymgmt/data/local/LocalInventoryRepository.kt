@@ -59,7 +59,6 @@ class LocalInventoryRepository @Inject constructor(
         return dao.updateDevice(deviceEntity)
     }
 
-
     /**
      * To remove device record from Database*/
     override suspend fun deleteDevice(deviceId: Int): Int {
@@ -80,14 +79,20 @@ class LocalInventoryRepository @Inject constructor(
 
     /**
      * To remove DeviceInventory record to Database*/
-    override suspend fun deleteDeviceInventory(empId: Int): Int {
-        return dao.deleteDeviceInventoryById(empId)
+    override suspend fun deleteDeviceInventory(recordId: Int): Int {
+        return dao.deleteDeviceInventoryById(recordId)
     }
 
     /**
      * To update DeviceInventory information into Database*/
-    override suspend fun updateDeviceInventory(deviceInventory: DeviceInventory) {
-        dao.updateInventory(deviceInventory)
+    override suspend fun updateDeviceInventory(deviceInventory: DeviceInventory): Int {
+        return dao.updateInventory(deviceInventory)
+    }
+
+    /**
+     * To remove DeviceInventory record to Database*/
+    override suspend fun updateInventoryStatus(recordId: Int, status: Int): Int {
+        return dao.updateInventoryStatus(recordId, status)
     }
 
 
