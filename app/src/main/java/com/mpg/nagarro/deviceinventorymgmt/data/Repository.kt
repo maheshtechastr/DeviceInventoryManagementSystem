@@ -1,6 +1,7 @@
 package com.mpg.nagarro.deviceinventorymgmt.data
 
 import androidx.lifecycle.LiveData
+import androidx.room.Query
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceEntity
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceInventory
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.EmployeeEntity
@@ -23,6 +24,15 @@ interface Repository {
     /**
      * To update Device information into Database*/
     suspend fun updateDevice(deviceEntity: DeviceEntity)
+
+    /**
+     * Update a device.
+     *
+     * @param totalInventory Device totalInventory to be updated
+     * @param deviceId Device id
+     * @return the number of Devices updated. This should always be 1.
+     */
+    suspend fun updateTotalInventory(totalInventory: Int, deviceId: Int): Int
 
     /**
      * To remove device record from Database*/

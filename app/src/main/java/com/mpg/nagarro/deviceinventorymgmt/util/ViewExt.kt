@@ -63,7 +63,7 @@ fun View.showDatePicker() {
         this.context, DatePickerDialog.OnDateSetListener
         { view, yearI, monthOfYear, dayOfMonth ->
             // Display Selected date in textbox
-            val monthOfYear = monthOfYear + 1
+//            val monthOfYear = monthOfYear + 1
             when (this) {
                 is Button -> this.text =
                     StringBuffer("Returned Date: $dayOfMonth/$monthOfYear/$yearI")

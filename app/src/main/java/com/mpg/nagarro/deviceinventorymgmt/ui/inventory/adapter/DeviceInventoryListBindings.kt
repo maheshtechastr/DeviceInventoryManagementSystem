@@ -1,11 +1,15 @@
 package com.mpg.nagarro.deviceinventorymgmt.ui.inventory.adapter
 
 import android.annotation.SuppressLint
+import android.graphics.Color
+import android.view.View
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mpg.nagarro.deviceinventorymgmt.R
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceInventory
+import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceStatus
 import com.mpg.nagarro.deviceinventorymgmt.util.Utils
 
 
@@ -26,11 +30,14 @@ fun setStatus(textView: TextView, status: Int) {
         textView.context.getString(R.string.device_status) + Utils.intDeviceStatusToEnum(status).name
 }
 
-//@BindingAdapter("app:completedTask")
-//fun setStyle(textView: TextView, enabled: Boolean) {
-//    if (enabled) {
-//        textView.paintFlags = textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-//    } else {
-//        textView.paintFlags = textView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-//    }
-//}
+@BindingAdapter("app:enabled")
+fun isActive(checkBox: CheckBox, status: Int) {
+    checkBox.isEnabled = (status == Utils.enumToIntDeviceStatus(DeviceStatus.ISSUED))
+}
+
+@BindingAdapter("app:isDateOver")
+fun changeAlertColor(viewGroup: View, deviceInventory: DeviceInventory) {
+    if (System.currentTimeMillis() > deviceInventory.returnDate.time) {
+        viewGroup.setBackgroundColor(Color.parseColor("#9DCDB6"))
+    }
+}

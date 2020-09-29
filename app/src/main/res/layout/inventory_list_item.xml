@@ -4,6 +4,10 @@
 
     <data>
 
+        <import type="com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceStatus" />
+
+        <import type="com.mpg.nagarro.deviceinventorymgmt.util.Utils" />
+
         <variable
             name="viewmodel"
             type="com.mpg.nagarro.deviceinventorymgmt.ui.inventory.DeviceAllottedListViewModel" />
@@ -21,7 +25,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/constraints_padding">
+            android:padding="@dimen/constraints_padding"
+            app:isDateOver="@{deviceinfo}">
 
             <TextView
                 android:id="@+id/tv_employee_name"
@@ -66,9 +71,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/add_device"
-                android:visibility="gone"
                 android:padding="5dp"
                 android:src="@drawable/trash_icon"
+                android:visibility="gone"
                 app:layout_constraintBaseline_toBaselineOf="@id/tv_device_name"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -76,9 +81,10 @@
                 android:id="@+id/cb_status_returned"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="@{viewmodel.isReturned(deviceinfo.status)}"
-                android:onClick="@{()->viewmodel.updateDeviceStatus(deviceinfo)}"
+
+                android:onClick="@{()->viewmodel.updateDeviceStatus(deviceinfo, DeviceStatus.RETURNED)}"
                 android:text="@string/status_returned"
+                app:enabled="@{deviceinfo.status}"
                 app:layout_constraintBaseline_toBaselineOf="@id/tv_employee_name"
                 app:layout_constraintEnd_toStartOf="@id/iv_delete_row" />
 
@@ -86,9 +92,9 @@
                 android:id="@+id/cb_status_lost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="@{viewmodel.isLost(deviceinfo.status)}"
-                android:onClick="@{()->viewmodel.updateDeviceStatus(deviceinfo)}"
+                android:onClick="@{()->viewmodel.updateDeviceStatus(deviceinfo, DeviceStatus.LOST)}"
                 android:text="@string/status_lost"
+                app:enabled="@{deviceinfo.status}"
                 app:layout_constraintStart_toStartOf="@id/cb_status_returned"
                 app:layout_constraintTop_toBottomOf="@id/cb_status_returned" />
         </androidx.constraintlayout.widget.ConstraintLayout>

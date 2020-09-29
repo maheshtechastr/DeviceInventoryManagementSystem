@@ -28,6 +28,14 @@ interface InventoryDataSource {
      * To update Device Current Available information into Database*/
     suspend fun updateAvailableInventory(currentInventory: Int, deviceId: Int): Int
 
+    /**
+     * Update a device.
+     *
+     * @param totalInventory Device totalInventory to be updated
+     * @param deviceId Device id
+     * @return the number of Devices updated. This should always be 1.
+     */
+    suspend fun updateTotalInventory(totalInventory: Int, deviceId: Int): Int
 
     /**
      * To Fetch All Employees from Database*/

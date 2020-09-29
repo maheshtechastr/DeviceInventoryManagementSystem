@@ -37,6 +37,17 @@ class RepositoryImpl @Inject constructor(private val inventoryDataSource: Invent
     }
 
     /**
+     * Update a device.
+     *
+     * @param totalInventory Device totalInventory to be updated
+     * @param deviceId Device id
+     * @return the number of Devices updated. This should always be 1.
+     */
+    override suspend fun updateTotalInventory(totalInventory: Int, deviceId: Int): Int {
+        return inventoryDataSource.updateTotalInventory(totalInventory, deviceId)
+    }
+
+    /**
      * To remove device record from Database
      * @param deviceId deviceId*/
     override suspend fun deleteDevice(deviceId: Int): Int {

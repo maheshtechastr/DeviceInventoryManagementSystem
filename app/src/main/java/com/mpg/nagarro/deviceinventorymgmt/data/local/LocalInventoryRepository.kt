@@ -9,7 +9,6 @@ import javax.inject.Inject
 
 class LocalInventoryRepository @Inject constructor(
     private val dao: InventoryDao,
-    //private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : InventoryDataSource {
     /**
      * To add Device information into Database*/
@@ -41,6 +40,17 @@ class LocalInventoryRepository @Inject constructor(
      * To update Device Current Available information into Database*/
     override suspend fun updateAvailableInventory(currentInventory: Int, deviceId: Int): Int {
         return dao.updateAvailableInventory(currentInventory, deviceId)
+    }
+
+    /**
+     * Update a device.
+     *
+     * @param totalInventory Device totalInventory to be updated
+     * @param deviceId Device id
+     * @return the number of Devices updated. This should always be 1.
+     */
+    override suspend fun updateTotalInventory(totalInventory: Int, deviceId: Int): Int {
+        return dao.updateTotalInventory(totalInventory, deviceId)
     }
 
     /**

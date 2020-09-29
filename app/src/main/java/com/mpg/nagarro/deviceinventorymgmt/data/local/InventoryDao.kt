@@ -35,7 +35,7 @@ interface InventoryDao {
      *
      * @return all Devices.
      */
-    @Query("SELECT * FROM DeviceEntity WHERE currentAvailableInventory <= totalInventory")
+    @Query("SELECT * FROM DeviceEntity WHERE currentAvailableInventory <= totalInventory AND currentAvailableInventory > 0")
     fun observeAvailableDevices(): LiveData<List<DeviceEntity>>
 
     /**
@@ -83,6 +83,15 @@ interface InventoryDao {
     @Query("UPDATE DeviceEntity SET currentAvailableInventory = :currentInventory WHERE deviceId = :deviceId")
     suspend fun updateAvailableInventory(currentInventory: Int, deviceId: Int): Int
 
+    /**
+     * Update a device.
+     *
+     * @param totalInventory Device totalInventory to be updated
+     * @param deviceId Device id
+     * @return the number of Devices updated. This should always be 1.
+     */
+    @Query("UPDATE DeviceEntity SET totalInventory = :totalInventory WHERE deviceId = :deviceId")
+    suspend fun updateTotalInventory(totalInventory: Int, deviceId: Int): Int
 
     /**
      *

@@ -1,6 +1,5 @@
 package com.mpg.nagarro.deviceinventorymgmt.ui.inventory
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.mpg.nagarro.deviceinventorymgmt.base.BaseViewModel
@@ -17,18 +16,42 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
 
     val deviceInventoryList: LiveData<List<DeviceInventory>> = repository.getDeviceInventoryList()
 
-    fun updateDeviceStatus(deviceInventory: DeviceInventory) {
-        Log.i(TAG, "updateDeviceStatus: status = ${deviceInventory.status}")
+    fun updateDeviceStatus(deviceInventory: DeviceInventory, deviceStatus: DeviceStatus) {
+        var result: Int
         viewModelScope.launch {
-            repository.updateInventoryStatus(deviceInventory.recordId, deviceInventory.status)
+            val deviceEntity = repository.getDeviceById(deviceInventory.deviceId)
+            deviceEntity?.let {
+                when (deviceStatus) {
+                    DeviceStatus.RETURNED -> {
+                        result = repository.updateInventoryStatus(
+                            deviceInventory.recordId,
+                            Utils.enumToIntDeviceStatus(DeviceStatus.RETURNED)
+                        )
+                        if (result > 0)
+                            repository.updateAvailableInventory(
+                                deviceEntity.currentAvailableInventory + 1,
+                                deviceEntity.deviceId
+                            )
+                    }
+                    DeviceStatus.LOST -> {
+                        result = repository.updateInventoryStatus(
+                            deviceInventory.recordId,
+                            Utils.enumToIntDeviceStatus(DeviceStatus.LOST)
+                        )
+                        if (result > 0)
+                            repository.updateTotalInventory(
+                                deviceEntity.totalInventory - 1,
+                                deviceEntity.deviceId
+                            )
+                    }
+                    else -> {
+                        result = -1
+                    }
+                }
+            }
+
+
         }
     }
 
-    fun isReturned(status: Int): Boolean {
-        return Utils.intDeviceStatusToEnum(status) == DeviceStatus.RETURNED
-    }
-
-    fun isLost(status: Int): Boolean {
-        return Utils.intDeviceStatusToEnum(status) == DeviceStatus.RETURNED
-    }
 }
