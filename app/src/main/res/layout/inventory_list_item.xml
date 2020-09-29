@@ -25,11 +25,11 @@
 
             <TextView
                 android:id="@+id/tv_employee_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-
                 android:hint="@string/employee_name"
                 android:text="@{@string/employee_name + deviceinfo.empName}"
+                app:layout_constraintEnd_toStartOf="@id/cb_status_returned"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,11 +66,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/add_device"
-                android:onClick="@{()->viewmodel.deleteRow(deviceinfo)}"
+                android:visibility="gone"
                 android:padding="5dp"
                 android:src="@drawable/trash_icon"
                 app:layout_constraintBaseline_toBaselineOf="@id/tv_device_name"
                 app:layout_constraintEnd_toEndOf="parent" />
+
+            <CheckBox
+                android:id="@+id/cb_status_returned"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@{viewmodel.isReturned(deviceinfo.status)}"
+                android:onClick="@{()->viewmodel.updateDeviceStatus(deviceinfo)}"
+                android:text="@string/status_returned"
+                app:layout_constraintBaseline_toBaselineOf="@id/tv_employee_name"
+                app:layout_constraintEnd_toStartOf="@id/iv_delete_row" />
+
+            <CheckBox
+                android:id="@+id/cb_status_lost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@{viewmodel.isLost(deviceinfo.status)}"
+                android:onClick="@{()->viewmodel.updateDeviceStatus(deviceinfo)}"
+                android:text="@string/status_lost"
+                app:layout_constraintStart_toStartOf="@id/cb_status_returned"
+                app:layout_constraintTop_toBottomOf="@id/cb_status_returned" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

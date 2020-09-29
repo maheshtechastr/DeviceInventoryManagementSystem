@@ -15,10 +15,11 @@ import javax.inject.Inject
  */
 class DeviceListAdapter @Inject constructor(private val viewModel: DeviceListViewModel) :
     ListAdapter<DeviceEntity, DeviceListAdapter.ViewHolder>(DeviceDiffCallback()) {
+    private var itemClickListener: OnDeviceItemClickListener? = null
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item, viewModel)
+        holder.bind(item, viewModel, itemClickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,9 +29,16 @@ class DeviceListAdapter @Inject constructor(private val viewModel: DeviceListVie
     class ViewHolder private constructor(val binding: DeviceListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: DeviceEntity, viewModel: DeviceListViewModel) {
+        fun bind(
+            item: DeviceEntity,
+            viewModel: DeviceListViewModel,
+            itemClickListener: OnDeviceItemClickListener?
+        ) {
             binding.deviceinfo = item
             binding.viewmodel = viewModel
+            binding.ivDeleteRow.setOnClickListener {
+                itemClickListener?.onItemClicked(adapterPosition, item)
+            }
             binding.executePendingBindings()
         }
 
@@ -42,6 +50,14 @@ class DeviceListAdapter @Inject constructor(private val viewModel: DeviceListVie
             }
         }
     }
+
+    fun setItemClickListener(itemClicked: OnDeviceItemClickListener) {
+        this.itemClickListener = itemClicked
+    }
+}
+
+interface OnDeviceItemClickListener {
+    fun onItemClicked(position: Int, item: DeviceEntity)
 }
 
 /**

@@ -117,13 +117,22 @@ interface InventoryDao {
     suspend fun deleteEmployeeById(empId: Int): Int
 
     /**
-     * Observes a single Device.
+     * Observes a single Employee.
      *
      * @param empId the Employee id.
      * @return the Employee with empId.
      */
     @Query("SELECT * FROM EmployeeEntity WHERE empId = :empId")
     fun observeEmployeeById(empId: Int): LiveData<EmployeeEntity>
+
+    /**
+     * Get a single Employee.
+     *
+     * @param empId the Employee id.
+     * @return the Employee with empId.
+     */
+    @Query("SELECT * FROM EmployeeEntity WHERE empId = :empId")
+    suspend fun getEmployeeById(empId: Int): EmployeeEntity?
 
     /**
      *
@@ -146,6 +155,14 @@ interface InventoryDao {
      */
     @Query("SELECT * FROM DeviceInventory")
     fun observeDeviceInventories(): LiveData<List<DeviceInventory>>
+
+    /**
+     * Get a DeviceInventory by id.
+     *@param recordId for recordId
+     * @return the number of DeviceInventory deleted. This should always be 1.
+     */
+    @Query("SELECT * FROM DeviceInventory WHERE recordId = :recordId")
+    suspend fun getDeviceInventoryById(recordId: Int): DeviceInventory?
 
     /**
      * Delete a DeviceInventory by id.
@@ -178,4 +195,11 @@ interface InventoryDao {
     @Query("DELETE FROM DeviceInventory")
     suspend fun deleteDeviceInventories()
 
+    /**
+     * Observes list of DeviceInventory.
+     *Kindly Don't change these numeric value from Utils other wise some functionality may cause ambiguity
+     * @return all DeviceInventory.
+     */
+    @Query("SELECT * FROM DeviceInventory WHERE empId = :empId AND (status = 2 OR status = 4) ")
+    suspend fun getAllIssuedOrLostInventoryOfEmpId(empId: Int): List<DeviceInventory>
 }

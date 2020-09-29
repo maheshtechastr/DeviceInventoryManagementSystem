@@ -12,7 +12,11 @@ class EmployeeListViewModel @Inject constructor(private val repository: Reposito
     BaseViewModel() {
     val employees: LiveData<List<EmployeeEntity>> = repository.getEmployeeList()
 
-    fun deleteRow(employeeEntity: EmployeeEntity) = viewModelScope.launch {
-        repository.deleteEmployee(employeeEntity.empId)
+    fun deleteRow(entity: EmployeeEntity) = viewModelScope.launch {
+        val deviceInventories = repository.getAllIssuedOrLostInventoryOfEmpId(entity.empId)
+        if (deviceInventories.isEmpty())
+            repository.deleteEmployee(entity.empId)
+        else
+            showMessage.postValue("\" ${entity.name} \" can't be deleted \n He/She has not  returned the devices or lost")
     }
 }

@@ -31,7 +31,7 @@ import java.util.*
 /**
  * Transforms static java function Snackbar.make() to an extension function on View.
  */
-fun View.showSnackbar(snackbarText: String, timeLength: Int) {
+fun View.showSnackbar(snackbarText: String, timeLength: Int = Snackbar.LENGTH_LONG) {
     Snackbar.make(this, snackbarText, timeLength).run {
         show()
     }

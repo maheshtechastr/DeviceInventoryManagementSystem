@@ -56,7 +56,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/add_device"
-                android:onClick="@{()->viewmodel.deleteRow(deviceinfo)}"
                 android:padding="5dp"
                 android:src="@drawable/trash_icon"
                 app:layout_constraintBaseline_toBaselineOf="@id/tv_name"

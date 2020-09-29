@@ -7,7 +7,7 @@ import com.mpg.nagarro.deviceinventorymgmt.base.BaseFragment
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.EmployeeEntity
 import com.mpg.nagarro.deviceinventorymgmt.databinding.EmployeeListFragmentBinding
 import com.mpg.nagarro.deviceinventorymgmt.ui.employee.adapter.EmployeeListAdapter
-import com.mpg.nagarro.deviceinventorymgmt.util.showToast
+import com.mpg.nagarro.deviceinventorymgmt.util.showSnackbar
 import javax.inject.Inject
 
 class EmployeeListFragment : BaseFragment<EmployeeListFragmentBinding, EmployeeListViewModel>(),
@@ -30,6 +30,9 @@ class EmployeeListFragment : BaseFragment<EmployeeListFragmentBinding, EmployeeL
         viewModel.employees.observe(viewLifecycleOwner, {
             listAdapter.submitList(it)
         })
+        viewModel.showMessage.observe(viewLifecycleOwner, {
+            viewDataBinding.root.showSnackbar(it)
+        })
     }
 
     /**Add Adapter to view*/
@@ -39,7 +42,6 @@ class EmployeeListFragment : BaseFragment<EmployeeListFragmentBinding, EmployeeL
     }
 
     override fun onItemClicked(position: Int, item: EmployeeEntity) {
-        viewDataBinding.root.showToast("$position Row : ${item.name}")
         viewModel.deleteRow(item)
     }
 

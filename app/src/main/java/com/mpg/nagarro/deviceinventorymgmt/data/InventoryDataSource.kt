@@ -11,6 +11,12 @@ interface InventoryDataSource {
     suspend fun addDevice(deviceEntity: DeviceEntity)
 
     /**
+     * Select a device by id.
+     *
+     */
+    suspend fun getDeviceById(deviceId: Int): DeviceEntity?
+
+    /**
      * To Fetch All Devices from Database*/
     fun getDeviceList(): LiveData<List<DeviceEntity>>
 
@@ -30,6 +36,14 @@ interface InventoryDataSource {
     /**
      * To add Employee information into Database*/
     suspend fun addEmployee(employeeEntity: EmployeeEntity)
+
+    /**
+     * Get a single Employee.
+     *
+     * @param empId the Employee id.
+     * @return the Employee with empId.
+     */
+    suspend fun getEmployeeById(empId: Int): EmployeeEntity?
 
     /**
      * To remove Employee record to Database*/
@@ -63,4 +77,17 @@ interface InventoryDataSource {
     /**
      * To remove DeviceInventory record to Database*/
     suspend fun updateInventoryStatus(recordId: Int, status: Int): Int
+
+    /**
+     * Get a DeviceInventory by id.
+     *@param recordId for recordId
+     * @return the number of DeviceInventory deleted. This should always be 1.
+     */
+    suspend fun getDeviceInventoryById(recordId: Int): DeviceInventory?
+
+    /**
+     * Observes list of DeviceInventory.
+     * @return all DeviceInventory.
+     */
+    suspend fun getAllIssuedOrLostInventoryOfEmpId(empId: Int): List<DeviceInventory>
 }

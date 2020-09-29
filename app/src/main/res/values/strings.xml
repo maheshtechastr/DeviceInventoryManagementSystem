@@ -10,11 +10,13 @@
     <string name="current_inventory"><b>Current Inventory: </b></string>
     <string name="email"><b>Email: </b></string>
     <string name="emailId">Abc@xyz.com</string>
+    <string name="alert_message">Are you sure, you want to remove it?</string>
     <string name="add_device">Add</string>
     <string name="delete_device">Delete</string>
     <string name="cancel">Cancel</string>
     <string name="submit">Submit</string>
-
+    <string name="status_lost">Lost</string>
+    <string name="status_returned">Returned</string>
     <string name="device_list">Device List</string>
     <string name="employee_list">Employee List</string>
     <string name="device_allotted_list">Device Allotted List</string>

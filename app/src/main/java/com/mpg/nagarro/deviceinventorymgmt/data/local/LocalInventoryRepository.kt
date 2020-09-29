@@ -18,6 +18,14 @@ class LocalInventoryRepository @Inject constructor(
     }
 
     /**
+     * Select a device by id.
+     *
+     */
+    override suspend fun getDeviceById(deviceId: Int): DeviceEntity? {
+        return dao.getDeviceById(deviceId)
+    }
+
+    /**
      * To Fetch All Devices from Database*/
     override fun getDeviceList(): LiveData<List<DeviceEntity>> {
         return dao.observeDevices()
@@ -45,6 +53,16 @@ class LocalInventoryRepository @Inject constructor(
      * To add Employee information into Database*/
     override suspend fun addEmployee(employeeEntity: EmployeeEntity) {
         dao.addEmployee(employeeEntity)
+    }
+
+    /**
+     * Get a single Employee.
+     *
+     * @param empId the Employee id.
+     * @return the Employee with empId.
+     */
+    override suspend fun getEmployeeById(empId: Int): EmployeeEntity? {
+        return dao.getEmployeeById(empId)
     }
 
     /**
@@ -93,6 +111,23 @@ class LocalInventoryRepository @Inject constructor(
      * To remove DeviceInventory record to Database*/
     override suspend fun updateInventoryStatus(recordId: Int, status: Int): Int {
         return dao.updateInventoryStatus(recordId, status)
+    }
+
+    /**
+     * Get a DeviceInventory by id.
+     *@param recordId for recordId
+     * @return the number of DeviceInventory deleted. This should always be 1.
+     */
+    override suspend fun getDeviceInventoryById(recordId: Int): DeviceInventory? {
+        return dao.getDeviceInventoryById(recordId)
+    }
+
+    /**
+     * Observes list of DeviceInventory.
+     * @return all DeviceInventory.
+     */
+    override suspend fun getAllIssuedOrLostInventoryOfEmpId(empId: Int): List<DeviceInventory> {
+        return dao.getAllIssuedOrLostInventoryOfEmpId(empId)
     }
 
 

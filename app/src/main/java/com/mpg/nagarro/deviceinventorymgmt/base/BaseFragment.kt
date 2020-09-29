@@ -47,6 +47,9 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : ViewModel> : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewDataBinding = DataBindingUtil.inflate(inflater, getLayout(), container, false)
+
+        viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
+
         viewDataBinding.setVariable(BR.viewModel, viewModel)
         viewDataBinding.executePendingBindings()
         return viewDataBinding.root

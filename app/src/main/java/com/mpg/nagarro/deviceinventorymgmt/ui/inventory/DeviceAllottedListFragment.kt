@@ -10,6 +10,7 @@ import javax.inject.Inject
 
 class DeviceAllottedListFragment :
     BaseFragment<DeviceAllottedListFragmentBinding, DeviceAllottedListViewModel>() {
+    private val TAG = "DeviceAllottedListFragm"
 
     @Inject
     lateinit var listAdapter: DeviceInventoryListAdapter
@@ -19,7 +20,6 @@ class DeviceAllottedListFragment :
     override fun getViewModel() = DeviceAllottedListViewModel::class.java
 
     override fun onCreateView(rootView: View) {
-
         setupAdapter()
 
         viewDataBinding.floatingActionButton.setOnClickListener {
