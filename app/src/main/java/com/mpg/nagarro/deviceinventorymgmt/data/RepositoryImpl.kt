@@ -22,6 +22,31 @@ class RepositoryImpl @Inject constructor(private val inventoryDataSource: Invent
     }
 
     /**
+     * To update Device information into Database*/
+    override suspend fun updateDevice(deviceEntity: DeviceEntity) {
+        inventoryDataSource.updateDevice(deviceEntity)
+    }
+
+    /**
+     * To remove device record from Database
+     * @param deviceId deviceId*/
+    override suspend fun deleteDevice(deviceId: Int): Int {
+        return inventoryDataSource.deleteDevice(deviceId)
+    }
+
+    /**
+     * To Fetch All Available Devices from Database*/
+    override fun observeAvailableDevices(): LiveData<List<DeviceEntity>> {
+        return inventoryDataSource.observeAvailableDevices()
+    }
+
+    /**
+     * To update Device Current Available information into Database*/
+    override suspend fun updateAvailableInventory(currentInventory: Int, deviceId: Int): Int {
+        return inventoryDataSource.updateAvailableInventory(currentInventory, deviceId)
+    }
+
+    /**
      * To Fetch All Employees from Database*/
     override fun getEmployeeList(): LiveData<List<EmployeeEntity>> {
         return inventoryDataSource.getEmployeeList()
@@ -34,18 +59,10 @@ class RepositoryImpl @Inject constructor(private val inventoryDataSource: Invent
         inventoryDataSource.addEmployee(employeeEntity)
     }
 
-
     /**
      * To remove Employee record to Database*/
     override suspend fun deleteEmployee(empId: Int): Int {
         return inventoryDataSource.deleteEmployee(empId)
-    }
-
-    /**
-     * To remove device record from Database
-     * @param deviceId deviceId*/
-    override suspend fun deleteDevice(deviceId: Int): Int {
-        return inventoryDataSource.deleteDevice(deviceId)
     }
 
     /**

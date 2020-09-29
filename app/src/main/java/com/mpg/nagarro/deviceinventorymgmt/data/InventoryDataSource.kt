@@ -15,6 +15,14 @@ interface InventoryDataSource {
     fun getDeviceList(): LiveData<List<DeviceEntity>>
 
     /**
+     * To Fetch All Available Devices from Database*/
+    fun observeAvailableDevices(): LiveData<List<DeviceEntity>>
+
+    /**
+     * To update Device Current Available information into Database*/
+    suspend fun updateAvailableInventory(currentInventory: Int, deviceId: Int): Int
+
+    /**
      * To Fetch All Employees from Database*/
     fun getEmployeeList(): LiveData<List<EmployeeEntity>>
 
@@ -26,13 +34,10 @@ interface InventoryDataSource {
      * To remove Employee record to Database*/
     suspend fun deleteEmployee(empId: Int): Int
 
-//    /**
-//     * To update Employee information into Database*/
-//    fun updateEmployee(employeeEntity: EmployeeEntity)
-//
-//    /**
-//     * To update Device information into Database*/
-//    fun updateDevice(deviceEntity: DeviceEntity)
+
+    /**
+     * To update Device information into Database*/
+    suspend fun updateDevice(deviceEntity: DeviceEntity): Int
 
     /**
      * To remove device record from Database*/

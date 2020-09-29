@@ -58,6 +58,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/data/DeviceInventoryRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/data/EmployeeRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/data/InventoryDataSource.kt">
           <value>
             <set />
@@ -119,6 +129,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/data/local/DateUtil.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/data/local/EmployeeRepository.kt">
           <value>
             <set />
           </value>

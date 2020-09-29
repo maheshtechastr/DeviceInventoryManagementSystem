@@ -24,6 +24,18 @@ class LocalInventoryRepository @Inject constructor(
     }
 
     /**
+     * To Fetch All Available Devices from Database*/
+    override fun observeAvailableDevices(): LiveData<List<DeviceEntity>> {
+        return dao.observeAvailableDevices()
+    }
+
+    /**
+     * To update Device Current Available information into Database*/
+    override suspend fun updateAvailableInventory(currentInventory: Int, deviceId: Int): Int {
+        return dao.updateAvailableInventory(currentInventory, deviceId)
+    }
+
+    /**
      * To Fetch All Employees from Database*/
     override fun getEmployeeList(): LiveData<List<EmployeeEntity>> {
         return dao.observeEmployees()
@@ -39,6 +51,12 @@ class LocalInventoryRepository @Inject constructor(
      * To remove Employee record to Database*/
     override suspend fun deleteEmployee(empId: Int): Int {
         return dao.deleteEmployeeById(empId)
+    }
+
+    /**
+     * To update Device information into Database*/
+    override suspend fun updateDevice(deviceEntity: DeviceEntity): Int {
+        return dao.updateDevice(deviceEntity)
     }
 
 

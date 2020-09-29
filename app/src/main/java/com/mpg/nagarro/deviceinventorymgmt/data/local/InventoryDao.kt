@@ -31,6 +31,14 @@ interface InventoryDao {
     fun observeDevices(): LiveData<List<DeviceEntity>>
 
     /**
+     * Observes list of Devices.
+     *
+     * @return all Devices.
+     */
+    @Query("SELECT * FROM DeviceEntity WHERE currentAvailableInventory <= totalInventory")
+    fun observeAvailableDevices(): LiveData<List<DeviceEntity>>
+
+    /**
      * Delete a Device by id.
      *
      * @return the number of devices deleted. This should always be 1.
@@ -65,6 +73,15 @@ interface InventoryDao {
     @Update
     suspend fun updateDevice(deviceEntity: DeviceEntity): Int
 
+    /**
+     * Update a device.
+     *
+     * @param currentInventory Device currentInventory to be updated
+     * @param deviceId Device id
+     * @return the number of Devices updated. This should always be 1.
+     */
+    @Query("UPDATE DeviceEntity SET currentAvailableInventory = :currentInventory WHERE deviceId = :deviceId")
+    suspend fun updateAvailableInventory(currentInventory: Int, deviceId: Int): Int
     /**
      *
      *
