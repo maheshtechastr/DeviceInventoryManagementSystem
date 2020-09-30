@@ -1,14 +1,19 @@
 package com.mpg.nagarro.deviceinventorymgmt.data.local
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.map
 import com.mpg.nagarro.deviceinventorymgmt.data.InventoryDataSource
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceEntity
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceInventory
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.EmployeeEntity
+import com.mpg.nagarro.deviceinventorymgmt.data.entity.Result
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 class LocalInventoryRepository @Inject constructor(
     private val dao: InventoryDao,
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : InventoryDataSource {
     /**
      * To add Device information into Database*/
@@ -95,10 +100,11 @@ class LocalInventoryRepository @Inject constructor(
 
     /**
      * To Fetch All DeviceInventory from Database*/
-    override fun getDeviceInventoryList(): LiveData<List<DeviceInventory>> {
-        return dao.observeDeviceInventories()
+    override fun getDeviceInventoryList(): LiveData<Result<List<DeviceInventory>>> {
+        return dao.observeDeviceInventories().map {
+            Result.Success(it)
+        }
     }
-
     /**
      * To add DeviceInventory information into Database*/
     override suspend fun addDeviceInventory(deviceInventory: DeviceInventory) {

@@ -2,10 +2,7 @@ package com.mpg.nagarro.deviceinventorymgmt.ui.inventory
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.mpg.nagarro.deviceinventorymgmt.R
 import com.mpg.nagarro.deviceinventorymgmt.base.BaseViewModel
 import com.mpg.nagarro.deviceinventorymgmt.data.Repository
@@ -15,16 +12,26 @@ import com.mpg.nagarro.deviceinventorymgmt.util.Event
 import com.mpg.nagarro.deviceinventorymgmt.util.Utils
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.mpg.nagarro.deviceinventorymgmt.data.entity.Result
 
 class DeviceAllottedListViewModel @Inject constructor(private val repository: Repository) :
     BaseViewModel() {
     private val TAG = "DeviceAllottedListViewM"
-
-    private val _deviceInventoryList: LiveData<List<DeviceInventory>> =
-        repository.getDeviceInventoryList()
-    var deviceInventoryList: LiveData<List<DeviceInventory>> = _deviceInventoryList
-
     private var currentFiltering = DeviceStatus.ISSUED
+    // Note, for testing and architecture purposes, it's bad practice to construct the repository
+    // here. We'll show you how to fix this during the codelab
+
+    private val _forceUpdate = MutableLiveData<Boolean>(false)
+
+
+    private val _deviceInventoryList: LiveData<List<DeviceInventory>> =_forceUpdate.switchMap { forceUpdate ->
+        repository.getDeviceInventoryList().switchMap { filterTasks(it) }
+    }
+
+    var deviceInventoryList: LiveData<List<DeviceInventory>> =
+        Transformations.map(_deviceInventoryList) {
+            filterItems(it, currentFiltering)
+        }
 
     private val _openDeviceInventoryEvent = MutableLiveData<Event<String>>()
     val openDeviceInventoryEvent: LiveData<Event<String>> = _openDeviceInventoryEvent
@@ -51,6 +58,7 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
 
     init {
         setFiltering(currentFiltering)
+        loadTasks(false)
     }
 
     fun updateDeviceStatus(deviceInventory: DeviceInventory, deviceStatus: DeviceStatus) {
@@ -97,28 +105,31 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
             DeviceStatus.ISSUED -> {
                 setFilter(
                     R.string.issued_menu_filter, R.string.no_issued_inventory,
-                    R.drawable.logo_no_fill, true
+                    R.drawable.ic_done, true
                 )
             }
             DeviceStatus.LOST -> {
                 setFilter(
                     R.string.lost_menu_filter, R.string.no_lost_inventory,
-                    R.drawable.logo_no_fill, true
+                    R.drawable.ic_menu, true
                 )
             }
-            DeviceStatus.RETURNED ->{
+            DeviceStatus.RETURNED -> {
                 setFilter(
                     R.string.returned_menu_filter, R.string.no_returned_inventory,
-                    R.drawable.logo_no_fill, true
+                    R.drawable.ic_statistics, true
                 )
             }
             DeviceStatus.AVAILABLE -> {
                 setFilter(
                     R.string.all_menu_filter, R.string.no_inventory,
-                    R.drawable.logo_no_fill, true
+                    R.drawable.trash_icon, true
                 )
+
             }
         }
+        // Refresh list
+        loadTasks(false)
     }
 
     private fun setFilter(
@@ -129,6 +140,31 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
         _noDeviceInventoriesLabel.value = noDeviceInventorysLabelString
         _noDeviceInventoryIconRes.value = noDeviceInventoryIconDrawable
         _tasksAddViewVisible.value = tasksAddVisible
+    }
+
+    private fun filterTasks(tasksResult: Result<List<DeviceInventory>>): LiveData<List<DeviceInventory>> {
+        // TODO: This is a good case for liveData builder. Replace when stable.
+        val result = MutableLiveData<List<DeviceInventory>>()
+
+        if (tasksResult is Result.Success) {
+//            isDataLoadingError.value = false
+            viewModelScope.launch {
+                result.value = filterItems(tasksResult.data, currentFiltering)
+            }
+        } else {
+            result.value = emptyList()
+//            showSnackbarMessage(androidx.lifecycle.R.string.loading_tasks_error)
+//            isDataLoadingError.value = true
+        }
+
+        return result
+    }
+
+    /**
+     * @param forceUpdate   Pass in true to refresh the data in the [TasksDataSource]
+     */
+    fun loadTasks(forceUpdate: Boolean) {
+        _forceUpdate.value = forceUpdate
     }
 
     /**

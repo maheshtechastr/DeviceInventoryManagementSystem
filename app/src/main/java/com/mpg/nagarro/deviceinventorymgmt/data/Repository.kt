@@ -1,10 +1,11 @@
 package com.mpg.nagarro.deviceinventorymgmt.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Query
+
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceEntity
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceInventory
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.EmployeeEntity
+import com.mpg.nagarro.deviceinventorymgmt.data.entity.Result
 
 interface Repository {
     /**
@@ -97,7 +98,7 @@ interface Repository {
 
     /**
      * To Fetch All DeviceInventory from Database*/
-    fun getDeviceInventoryList(): LiveData<List<DeviceInventory>>
+    fun getDeviceInventoryList(): LiveData<Result<List<DeviceInventory>>>
 
     /**
      * Get a DeviceInventory by id.

@@ -6,7 +6,6 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.PopupMenu
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import com.mpg.nagarro.deviceinventorymgmt.R
 import com.mpg.nagarro.deviceinventorymgmt.base.BaseFragment
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceStatus

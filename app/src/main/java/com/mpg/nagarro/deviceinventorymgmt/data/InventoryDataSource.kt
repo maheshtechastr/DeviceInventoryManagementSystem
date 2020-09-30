@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceEntity
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceInventory
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.EmployeeEntity
+import com.mpg.nagarro.deviceinventorymgmt.data.entity.Result
 
 interface InventoryDataSource {
     /**
@@ -68,7 +69,7 @@ interface InventoryDataSource {
 
     /**
      * To Fetch All DeviceInventory from Database*/
-    fun getDeviceInventoryList(): LiveData<List<DeviceInventory>>
+    fun getDeviceInventoryList(): LiveData<Result<List<DeviceInventory>>>
 
     /**
      * To add DeviceInventory information into Database*/

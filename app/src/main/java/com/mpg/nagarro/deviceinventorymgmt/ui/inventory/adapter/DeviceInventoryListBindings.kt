@@ -2,6 +2,7 @@ package com.mpg.nagarro.deviceinventorymgmt.ui.inventory.adapter
 
 import android.annotation.SuppressLint
 import android.graphics.Color
+import android.util.Log
 import android.view.View
 import android.widget.CheckBox
 import android.widget.ImageView
@@ -40,7 +41,8 @@ fun isActive(checkBox: CheckBox, status: Int) {
 fun changeAlertColor(viewGroup: View, deviceInventory: DeviceInventory) {
     if (System.currentTimeMillis() > deviceInventory.returnDate.time) {
         viewGroup.setBackgroundColor(Color.parseColor("#9DCDB6"))
-    }
+    } else
+        viewGroup.setBackgroundColor(Color.parseColor("#00000000"))
 }
 
 @BindingAdapter("app:textR")
@@ -48,6 +50,7 @@ fun setTextR(textView: TextView, res: Int) {
     try {
         textView.text = textView.context.getString(res)
     } catch (e: Exception) {
+        Log.i("TAG setTextR", "Res: $res")
         e.printStackTrace()
     }
 }

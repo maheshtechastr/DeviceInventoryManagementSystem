@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceEntity
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceInventory
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.EmployeeEntity
+import com.mpg.nagarro.deviceinventorymgmt.data.entity.Result
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(private val inventoryDataSource: InventoryDataSource) :
@@ -122,7 +123,7 @@ class RepositoryImpl @Inject constructor(private val inventoryDataSource: Invent
 
     /**
      * To Fetch All DeviceInventories from Database*/
-    override fun getDeviceInventoryList(): LiveData<List<DeviceInventory>> {
+    override fun getDeviceInventoryList(): LiveData<Result<List<DeviceInventory>>> {
         return inventoryDataSource.getDeviceInventoryList()
     }
 
