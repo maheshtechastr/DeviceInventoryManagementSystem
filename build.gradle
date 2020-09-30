@@ -39,6 +39,7 @@ ext {
 
     // App dependencies
     roomVersion = '2.2.5'
+    workerVersion = '2.3.3'
     archLifecycleVersion = '2.2.0'
     coreTestingVersion = '2.1.0'
     materialVersion = '1.2.1'

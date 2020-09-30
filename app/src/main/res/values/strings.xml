@@ -37,4 +37,7 @@
     <string name="no_lost_inventory">You have no Lost device inventory!</string>
     <string name="no_inventory">You have no device inventory!</string>
 
+    <!-- Messages -->
+    <string name="set_permissions_in_settings">Go to Settings -> Apps and Notifications ->
+        WorkManager Demo -> App Permissions and grant access to Storage.</string>
 </resources>
