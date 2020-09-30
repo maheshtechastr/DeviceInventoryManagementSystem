@@ -61,18 +61,19 @@ class DeviceAllotmentFragment :
     }
 
     private fun saveData() {
-        val deviceName = viewDataBinding.spinner.selectedItem.toString()
+        val deviceName = viewDataBinding.spinner.selectedItem?.toString()
         val employeeName = viewDataBinding.autoTextViewEmployeeName.editableText
         val returnDate = viewDataBinding.btnDatePicker.text.split(":")[1].trim()
         Log.i(TAG, "$employeeName==setOnItemClickListener=saveData: $deviceName")
         Log.i(TAG, "$returnDate==setOnItemClickListener=saveData: $deviceName")
+        deviceName?.let {
+            val employeeEntity = viewModel.getEmployeeEntity(employeeName.toString())
+            val deviceEntity = viewModel.getDeviceEntity(deviceName)
 
-        val employeeEntity = viewModel.getEmployeeEntity(employeeName.toString())
-        val deviceEntity = viewModel.getDeviceEntity(deviceName)
-
-        if (employeeEntity == null || deviceEntity == null)
-            return
-        viewModel.saveData(deviceEntity, employeeEntity, returnDate)
+            if (employeeEntity == null || deviceEntity == null)
+                return
+            viewModel.saveData(deviceEntity, employeeEntity, returnDate)
+        }
     }
 
 

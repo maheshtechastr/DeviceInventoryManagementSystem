@@ -105,25 +105,25 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
             DeviceStatus.ISSUED -> {
                 setFilter(
                     R.string.issued_menu_filter, R.string.no_issued_inventory,
-                    R.drawable.ic_done, true
+                    R.drawable.ic_edit, true
                 )
             }
             DeviceStatus.LOST -> {
                 setFilter(
                     R.string.lost_menu_filter, R.string.no_lost_inventory,
-                    R.drawable.ic_menu, true
+                    R.drawable.ic_no_content_24, true
                 )
             }
             DeviceStatus.RETURNED -> {
                 setFilter(
                     R.string.returned_menu_filter, R.string.no_returned_inventory,
-                    R.drawable.ic_statistics, true
+                    R.drawable.ic_done, true
                 )
             }
             DeviceStatus.AVAILABLE -> {
                 setFilter(
                     R.string.all_menu_filter, R.string.no_inventory,
-                    R.drawable.trash_icon, true
+                    R.drawable.ic_check_circle_96dp, true
                 )
 
             }

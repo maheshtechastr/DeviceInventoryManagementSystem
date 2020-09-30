@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
+
         <variable
             name="viewmodel"
             type="com.mpg.nagarro.deviceinventorymgmt.ui.devices.DeviceListViewModel" />
@@ -19,13 +22,45 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/device_list"
             android:layout_width="match_parent"
-            android:paddingVertical="10dp"
             android:layout_height="match_parent"
+            android:paddingVertical="10dp"
+            android:visibility="@{viewmodel.empty ? View.GONE : View.VISIBLE}"
+            app:items="@{viewmodel.devices}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:items="@{viewmodel.devices}"
             tools:listitem="@layout/device_list_item" />
+
+        <LinearLayout
+            android:id="@+id/no_inventory_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:visibility="@{viewmodel.empty ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/no_items_icon"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_no_content_24" />
+
+            <TextView
+                android:id="@+id/no_items_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/list_item_padding"
+                android:hint="@string/no_device"
+                android:text="@string/no_device" />
+        </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"

@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -62,16 +63,16 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     lateinit var appBarConfiguration: AppBarConfiguration
 
     lateinit var binding: ActivityMainBinding
+    private  val TAG = "MainActivity"
     /*To Removing CSV files from storage after 30days */
-    private val workManager = WorkManager.getInstance(application)
-
+    private val workManager = WorkManager.getInstance(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         /*
        * We still need to inject this method
        * into our activity so that our fragment can
        * inject the ViewModelFactory
        * */
-        AndroidInjection.inject(this);
+        AndroidInjection.inject(this)
 
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -121,12 +122,18 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
             )
 
         val periodicWork =
-            PeriodicWorkRequest.Builder(ScheduleBackupWorker::class.java, 12, TimeUnit.HOURS)
+            PeriodicWorkRequest.Builder(ScheduleBackupWorker::class.java, 15, TimeUnit.MINUTES)
                 .setConstraints(constraints)
                 .build()
-        WorkManager.getInstance(this.applicationContext)
-            .enqueue(periodicWork)
         continuation.enqueue()
+        WorkManager.getInstance(this.applicationContext)
+            .enqueueUniquePeriodicWork(
+            "BACKUP_TABLE",
+            ExistingPeriodicWorkPolicy.KEEP,
+            periodicWork
+        )
+
+        Log.d(TAG, "onCreate=() called");
     }
 
     override fun onSupportNavigateUp(): Boolean {

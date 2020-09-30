@@ -79,7 +79,12 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+// Assisted Inject
+    compileOnly "com.squareup.inject:assisted-inject-annotations-dagger2:$assisted_inject_version"
+    kapt "com.squareup.inject:assisted-inject-processor-dagger2:$assisted_inject_version"
+
     //worker
     implementation "androidx.work:work-runtime-ktx:$workerVersion"
     implementation "com.jakewharton.timber:timber:4.7.1"
+    implementation 'com.opencsv:opencsv:5.2'
 }

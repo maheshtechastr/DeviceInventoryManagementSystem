@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/app_name"
             android:padding="2dp"
+            android:visibility="@{viewmodel.empty ? View.GONE : View.VISIBLE}"
             android:text="@{context.getString(viewmodel.currentFilteringLabel)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

@@ -31,6 +31,14 @@ interface InventoryDao {
     fun observeDevices(): LiveData<List<DeviceEntity>>
 
     /**
+     * Get list of Devices.
+     *
+     * @return all Devices.
+     */
+    @Query("SELECT * FROM DeviceEntity")
+    fun getDevices(): List<DeviceEntity>
+
+    /**
      * Observes list of Devices.
      *
      * @return all Devices.
@@ -118,6 +126,14 @@ interface InventoryDao {
     fun observeEmployees(): LiveData<List<EmployeeEntity>>
 
     /**
+     * Get list of Employees.
+     *
+     * @return all Employees.
+     */
+    @Query("SELECT * FROM EmployeeEntity")
+    fun getEmployees(): List<EmployeeEntity>
+
+    /**
      * Delete a Employee by id.
      *
      * @return the number of Employees deleted. This should always be 1.
@@ -164,6 +180,14 @@ interface InventoryDao {
      */
     @Query("SELECT * FROM DeviceInventory")
     fun observeDeviceInventories(): LiveData<List<DeviceInventory>>
+
+    /**
+     * Get list of DeviceInventory.
+     *
+     * @return all DeviceInventory.
+     */
+    @Query("SELECT * FROM DeviceInventory")
+    fun getDeviceInventories(): LiveData<List<DeviceInventory>>
 
     /**
      * Get a DeviceInventory by id.

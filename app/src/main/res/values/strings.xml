@@ -36,6 +36,8 @@
     <string name="no_issued_inventory">You have no Issued device inventory!</string>
     <string name="no_lost_inventory">You have no Lost device inventory!</string>
     <string name="no_inventory">You have no device inventory!</string>
+    <string name="no_device"> You have no device! <br/>Please add <b>"Device"</b> by below button</string>
+    <string name="no_employee"> You have no employee inventory! <br/>Please add <b>"Employee"</b> by below button</string>
 
     <!-- Messages -->
     <string name="set_permissions_in_settings">Go to Settings -> Apps and Notifications ->

@@ -1,6 +1,7 @@
 package com.mpg.nagarro.deviceinventorymgmt.ui.devices
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.mpg.nagarro.deviceinventorymgmt.base.BaseViewModel
 import com.mpg.nagarro.deviceinventorymgmt.data.Repository
@@ -12,6 +13,11 @@ class DeviceListViewModel @Inject constructor(private val repository: Repository
     BaseViewModel() {
 
     val devices: LiveData<List<DeviceEntity>> = repository.getDeviceList()
+
+    // This LiveData depends on another so we can use a transformation.
+    val empty: LiveData<Boolean> = Transformations.map(devices) {
+        it.isEmpty()
+    }
 
     fun deleteRowAction(item: DeviceEntity) = viewModelScope.launch {
 
