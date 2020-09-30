@@ -2,6 +2,7 @@ package com.mpg.nagarro.deviceinventorymgmt.ui.employee
 
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.mpg.nagarro.deviceinventorymgmt.BR
 import com.mpg.nagarro.deviceinventorymgmt.R
 import com.mpg.nagarro.deviceinventorymgmt.base.BaseFragment
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.EmployeeEntity
@@ -12,6 +13,10 @@ import javax.inject.Inject
 
 class EmployeeListFragment : BaseFragment<EmployeeListFragmentBinding, EmployeeListViewModel>(),
     EmployeeListAdapter.OnItemClickListener {
+
+
+    override val bindingVariable: Int
+        get() = BR.viewmodel
 
     @Inject
     lateinit var listAdapter: EmployeeListAdapter
@@ -27,9 +32,9 @@ class EmployeeListFragment : BaseFragment<EmployeeListFragmentBinding, EmployeeL
         viewDataBinding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.addEditEmployeeFragment)
         }
-        viewModel.employees.observe(viewLifecycleOwner, {
-            listAdapter.submitList(it)
-        })
+//        viewModel.employees.observe(viewLifecycleOwner, {
+//            listAdapter.submitList(it)
+//        })
         viewModel.showMessage.observe(viewLifecycleOwner, {
             viewDataBinding.root.showSnackbar(it)
         })

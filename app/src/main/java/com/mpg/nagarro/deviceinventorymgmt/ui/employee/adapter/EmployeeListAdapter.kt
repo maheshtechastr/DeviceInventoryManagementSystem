@@ -13,7 +13,7 @@ import javax.inject.Inject
 /**
  * Adapter for the deviceInventory list. Has a reference to the [EmployeeListViewModel] to send actions back to it.
  */
-class EmployeeListAdapter @Inject constructor() :
+class EmployeeListAdapter @Inject constructor(private val employeeListViewModel: EmployeeListViewModel) :
     ListAdapter<EmployeeEntity, EmployeeListAdapter.ViewHolder>(EmployeeDiffCallback()) {
 
     interface OnItemClickListener {
@@ -28,8 +28,7 @@ class EmployeeListAdapter @Inject constructor() :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-
-        holder.bind(item, itemClickListener)
+        holder.bind(item, employeeListViewModel, itemClickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -39,14 +38,16 @@ class EmployeeListAdapter @Inject constructor() :
     class ViewHolder private constructor(val binding: EmployeeListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: EmployeeEntity, itemClickListener: OnItemClickListener?) {
-
+        fun bind(
+            item: EmployeeEntity,
+            viewModel: EmployeeListViewModel,
+            itemClickListener: OnItemClickListener?
+        ) {
             binding.employeeinfo = item
-
+            binding.viewmodel = viewModel
             binding.ivDeleteRow.setOnClickListener {
                 itemClickListener?.onItemClicked(adapterPosition, item)
             }
-
             binding.executePendingBindings()
         }
 

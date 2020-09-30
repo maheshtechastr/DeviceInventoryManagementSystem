@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.navigation.fragment.findNavController
+import com.mpg.nagarro.deviceinventorymgmt.BR
 import com.mpg.nagarro.deviceinventorymgmt.R
 import com.mpg.nagarro.deviceinventorymgmt.base.BaseFragment
 import com.mpg.nagarro.deviceinventorymgmt.databinding.DeviceAllotmentFragmentBinding
@@ -14,6 +15,9 @@ class DeviceAllotmentFragment :
     BaseFragment<DeviceAllotmentFragmentBinding, DeviceAllotmentViewModel>(),
     AdapterView.OnItemSelectedListener {
     private val TAG = "DeviceAllotmentFragment"
+
+    override val bindingVariable: Int
+        get() = BR.viewmodel
 
     override fun getLayout() = R.layout.device_allotment_fragment
 

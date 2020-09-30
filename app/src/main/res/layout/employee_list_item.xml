@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="viewmodel"
+            type="com.mpg.nagarro.deviceinventorymgmt.ui.employee.EmployeeListViewModel" />
+
+        <variable
             name="employeeinfo"
             type="com.mpg.nagarro.deviceinventorymgmt.data.entity.EmployeeEntity" />
 

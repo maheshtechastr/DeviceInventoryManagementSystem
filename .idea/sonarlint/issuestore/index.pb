@@ -101,3 +101,5 @@ P
 Qapp/src/main/java/com/mpg/nagarro/deviceinventorymgmt/data/entity/DeviceStatus.kt,7\5\759b40ddb088b44353ad66d241e1827ea8b45d88
 s
 Capp/src/main/java/com/mpg/nagarro/deviceinventorymgmt/util/Event.kt,4\c\4c62572e0c5b79d018eef4daf7c529cf544e2210
+Œ
+\app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/data/local/LocalInventoryRepository.kt,3\1\3103e34c2ab670b2f3d73b166fa2d3ec1d73490e

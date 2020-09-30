@@ -44,18 +44,3 @@ fun changeAlertColor(viewGroup: View, deviceInventory: DeviceInventory) {
     } else
         viewGroup.setBackgroundColor(Color.parseColor("#00000000"))
 }
-
-@BindingAdapter("app:textR")
-fun setTextR(textView: TextView, res: Int) {
-    try {
-        textView.text = textView.context.getString(res)
-    } catch (e: Exception) {
-        Log.i("TAG setTextR", "Res: $res")
-        e.printStackTrace()
-    }
-}
-
-@BindingAdapter("app:source")
-fun setImageResourceR(imageView: ImageView, res: Int) {
-    imageView.setImageResource(res)
-}

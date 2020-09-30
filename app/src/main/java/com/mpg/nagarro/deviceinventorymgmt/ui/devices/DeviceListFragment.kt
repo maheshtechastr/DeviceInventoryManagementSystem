@@ -1,9 +1,8 @@
 package com.mpg.nagarro.deviceinventorymgmt.ui.devices
 
-import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.mpg.nagarro.deviceinventorymgmt.BR
 import com.mpg.nagarro.deviceinventorymgmt.R
 import com.mpg.nagarro.deviceinventorymgmt.base.BaseFragment
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceEntity
@@ -17,6 +16,9 @@ import javax.inject.Inject
 
 class DeviceListFragment : BaseFragment<DeviceListFragmentBinding, DeviceListViewModel>(),
     OnDeviceItemClickListener, DialogCallBack<DeviceEntity> {
+
+    override val bindingVariable: Int
+        get() = BR.viewmodel
 
     @Inject
     lateinit var listAdapter: DeviceListAdapter
@@ -34,11 +36,6 @@ class DeviceListFragment : BaseFragment<DeviceListFragmentBinding, DeviceListVie
             findNavController().navigate(R.id.add_edit_device_fragment)
         }
 
-        viewModel.devices.observe(viewLifecycleOwner, {
-            Log.i(TAG, "observe: $it")
-            listAdapter.submitList(it)
-        })
-
         listAdapter.setItemClickListener(this)
 
         viewModel.showMessage.observe(viewLifecycleOwner, {
@@ -46,12 +43,6 @@ class DeviceListFragment : BaseFragment<DeviceListFragmentBinding, DeviceListVie
             viewDataBinding.root.showSnackbar(it)
 
         })
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        // Set the lifecycle owner to the lifecycle of the view
-        viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
     }
 
     private fun setUpAdapter() {

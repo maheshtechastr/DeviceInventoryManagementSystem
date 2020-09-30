@@ -27,9 +27,9 @@
             android:layout_height="wrap_content"
             android:hint="@string/app_name"
             android:padding="2dp"
+            android:text="@{context.getString(viewmodel.currentFilteringLabel)}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:textR="@{viewmodel.currentFilteringLabel}" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/inventory_list"
@@ -53,23 +53,26 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
-                android:id="@+id/no_tasks_icon"
+                android:id="@+id/no_items_icon"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_done" />
+                android:src="@{ContextCompat.getDrawable(context, viewmodel.noDeviceInventoryIconRes)}" />
 
             <TextView
-                android:id="@+id/no_tasks_text"
+                android:id="@+id/no_items_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/list_item_padding"
-                app:textR="@{viewmodel.noDeviceInventoriesLabel}" />
+                android:hint="@string/no_inventory"
+                android:text="@{context.getString(viewmodel.noDeviceInventoriesLabel)}"
+                 />
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

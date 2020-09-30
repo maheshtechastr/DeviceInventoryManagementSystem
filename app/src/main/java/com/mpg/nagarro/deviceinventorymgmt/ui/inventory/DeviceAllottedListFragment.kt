@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.PopupMenu
 import androidx.navigation.fragment.findNavController
+import com.mpg.nagarro.deviceinventorymgmt.BR
 import com.mpg.nagarro.deviceinventorymgmt.R
 import com.mpg.nagarro.deviceinventorymgmt.base.BaseFragment
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceStatus
@@ -17,6 +18,9 @@ import javax.inject.Inject
 class DeviceAllottedListFragment :
     BaseFragment<DeviceAllottedListFragmentBinding, DeviceAllottedListViewModel>() {
     private val TAG = "DeviceAllottedListFragm"
+
+    override val bindingVariable: Int
+        get() = BR.viewmodel
 
     @Inject
     lateinit var listAdapter: DeviceInventoryListAdapter
@@ -52,9 +56,6 @@ class DeviceAllottedListFragment :
 
     private fun setupAdapter() {
         viewDataBinding.inventoryList.adapter = listAdapter
-        viewModel.deviceInventoryList.observe(viewLifecycleOwner, {
-            listAdapter.submitList(it)
-        })
     }
 
     private fun showFilteringPopUpMenu() {
