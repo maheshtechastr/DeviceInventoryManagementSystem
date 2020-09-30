@@ -89,3 +89,15 @@ Happ/src/main/java/com/mpg/nagarro/deviceinventorymgmt/data/Repository.kt,8\2\8
 ]app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/ui/inventory/DeviceAllotmentFragment.kt,7\4\74c1771550a941ed0260b75e943a7b1c90c7582e
 x
 Happ/src/main/java/com/mpg/nagarro/deviceinventorymgmt/util/ContextExt.kt,8\8\88f4edd749fef41e1abdfab9e7019985006d0ab4
+x
+Happ/src/test/java/com/mpg/nagarro/deviceinventorymgmt/ExampleUnitTest.kt,f\9\f906cceaa893902e69320cda37f6e5a9f508b1ea
+á
+Wapp/src/androidTest/java/com/mpg/nagarro/deviceinventorymgmt/ExampleInstrumentedTest.kt,1\8\18a1001b47b5c14e1c2a63779ecbb1178027e18c
+{
+Kapp/src/main/java/com/mpg/nagarro/deviceinventorymgmt/data/entity/Result.kt,f\d\fd98900092f7e7333cba35125185b53e19b7269f
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+Å
+Qapp/src/main/java/com/mpg/nagarro/deviceinventorymgmt/data/entity/DeviceStatus.kt,7\5\759b40ddb088b44353ad66d241e1827ea8b45d88
+s
+Capp/src/main/java/com/mpg/nagarro/deviceinventorymgmt/util/Event.kt,4\c\4c62572e0c5b79d018eef4daf7c529cf544e2210

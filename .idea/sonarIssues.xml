@@ -18,6 +18,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../AssignmentDemo/android-workmanager-start_kotlin/app/src/main/java/com/example/background/BlurViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/build.gradle">
           <value>
             <set />
@@ -398,6 +403,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/util/Event.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/util/Utils.kt">
           <value>
             <set />
@@ -484,6 +494,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/menu/drawer_actions.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/menu/filter_inventory.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/menu/inventory_fragment_menu.xml">
           <value>
             <set />
           </value>

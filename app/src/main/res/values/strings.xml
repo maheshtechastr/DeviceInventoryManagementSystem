@@ -26,5 +26,15 @@
     <!-- Content Descriptions -->
     <string name="header_image_content_description">Device Inventory header image</string>
 
+    <!--*******************************Filter***************-->
+    <string name="issued_menu_filter">Issued</string>
+    <string name="returned_menu_filter">Returned</string>
+    <string name="lost_menu_filter">Lost</string>
+    <string name="all_menu_filter">All</string>
+
+    <string name="no_returned_inventory">You have no returned device inventory!</string>
+    <string name="no_issued_inventory">You have no Issued device inventory!</string>
+    <string name="no_lost_inventory">You have no Lost device inventory!</string>
+    <string name="no_inventory">You have no device inventory!</string>
 
 </resources>

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.View
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -40,4 +41,18 @@ fun changeAlertColor(viewGroup: View, deviceInventory: DeviceInventory) {
     if (System.currentTimeMillis() > deviceInventory.returnDate.time) {
         viewGroup.setBackgroundColor(Color.parseColor("#9DCDB6"))
     }
+}
+
+@BindingAdapter("app:textR")
+fun setTextR(textView: TextView, res: Int) {
+    try {
+        textView.text = textView.context.getString(res)
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+}
+
+@BindingAdapter("app:source")
+fun setImageResourceR(imageView: ImageView, res: Int) {
+    imageView.setImageResource(res)
 }
