@@ -688,6 +688,31 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mpg/nagarro/deviceinventorymgmt/ui/devices/DeviceListViewModelTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mpg/nagarro/deviceinventorymgmt/ui/employee/AddEditEmployeeViewModelTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mpg/nagarro/deviceinventorymgmt/ui/employee/EmployeeListViewModelTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mpg/nagarro/deviceinventorymgmt/ui/inventory/DeviceAllotmentViewModelTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mpg/nagarro/deviceinventorymgmt/ui/inventory/DeviceAllottedListViewModelTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/build.gradle">
           <value>
             <set />

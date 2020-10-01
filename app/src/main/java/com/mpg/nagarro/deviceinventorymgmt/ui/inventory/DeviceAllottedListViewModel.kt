@@ -49,8 +49,6 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
     val noDeviceInventoryIconRes: LiveData<Int> = _noDeviceInventoryIconRes
 
     private val _tasksAddViewVisible = MutableLiveData<Boolean>()
-
-    //not used
     val tasksAddViewVisible: LiveData<Boolean> = _tasksAddViewVisible
 
     // This LiveData depends on another so we can use a transformation.
@@ -107,19 +105,19 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
             DeviceStatus.ISSUED -> {
                 setFilter(
                     R.string.issued_menu_filter, R.string.no_issued_inventory,
-                    R.drawable.ic_edit, true
+                    R.drawable.ic_edit, false
                 )
             }
             DeviceStatus.LOST -> {
                 setFilter(
                     R.string.lost_menu_filter, R.string.no_lost_inventory,
-                    R.drawable.ic_no_content_24, true
+                    R.drawable.ic_no_content_24, false
                 )
             }
             DeviceStatus.RETURNED -> {
                 setFilter(
                     R.string.returned_menu_filter, R.string.no_returned_inventory,
-                    R.drawable.ic_done, true
+                    R.drawable.ic_done, false
                 )
             }
             DeviceStatus.AVAILABLE -> {
@@ -135,11 +133,11 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
     }
 
     private fun setFilter(
-        @StringRes filteringLabelString: Int, @StringRes noDeviceInventorysLabelString: Int,
+        @StringRes filteringLabelString: Int, @StringRes noDeviceInventoryLabelString: Int,
         @DrawableRes noDeviceInventoryIconDrawable: Int, tasksAddVisible: Boolean
     ) {
         _currentFilteringLabel.value = filteringLabelString
-        _noDeviceInventoriesLabel.value = noDeviceInventorysLabelString
+        _noDeviceInventoriesLabel.value = noDeviceInventoryLabelString
         _noDeviceInventoryIconRes.value = noDeviceInventoryIconDrawable
         _tasksAddViewVisible.value = tasksAddVisible
     }

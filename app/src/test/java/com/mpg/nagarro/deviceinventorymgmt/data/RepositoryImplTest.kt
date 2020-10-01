@@ -10,9 +10,14 @@ import com.mpg.nagarro.deviceinventorymgmt.data.entity.Result
 
 class RepositoryImplTest : Repository {
 
-    var tasksServiceData: LinkedHashMap<String, DeviceEntity> = LinkedHashMap()
-
+    private var tasksServiceData: LinkedHashMap<String, DeviceEntity> = LinkedHashMap()
     private val observableTasks = MutableLiveData<List<DeviceEntity>>()
+
+    private var empServiceData: LinkedHashMap<String, EmployeeEntity> = LinkedHashMap()
+    private val observableEmps = MutableLiveData<List<EmployeeEntity>>()
+
+    private var devInsServiceData: LinkedHashMap<String, DeviceInventory> = LinkedHashMap()
+    private val observableDenIns = MutableLiveData<List<DeviceInventory>>()
 
     /**
      *  Get Result DeviceEntity List*/
@@ -29,15 +34,15 @@ class RepositoryImplTest : Repository {
 
     /**
      * To add Device information into Database*/
+    override suspend fun addDevice(deviceEntity: DeviceEntity) {
+        TODO("Not yet implemented")
+    }
+
     fun addDevice(vararg deviceEntity: DeviceEntity) {
         for (task in deviceEntity) {
             tasksServiceData[task.deviceId.toString()] = task
         }
         observableTasks.value = tasksServiceData.values.toList()
-    }
-
-    override suspend fun addDevice(deviceEntity: DeviceEntity) {
-        TODO("Not yet implemented")
     }
 
     /**
@@ -91,6 +96,13 @@ class RepositoryImplTest : Repository {
         TODO("Not yet implemented")
     }
 
+    fun addEmployee(vararg employeeEntities: EmployeeEntity) {
+        for (emp in employeeEntities) {
+            empServiceData[emp.empId.toString()] = emp
+        }
+        observableEmps.value = empServiceData.values.toList()
+    }
+
     /**
      * Get a single Employee.
      *
@@ -110,13 +122,20 @@ class RepositoryImplTest : Repository {
     /**
      * To Fetch All Employees from Database*/
     override fun getEmployeeList(): LiveData<List<EmployeeEntity>> {
-        TODO("Not yet implemented")
+        return observableEmps
     }
 
     /**
      * To add DeviceInventory information into Database*/
     override suspend fun addDeviceInventory(deviceInventory: DeviceInventory) {
         TODO("Not yet implemented")
+    }
+
+    fun addDevInventory(vararg deviceInventories: DeviceInventory) {
+        for (devInv in deviceInventories) {
+            devInsServiceData[devInv.recordId.toString()] = devInv
+        }
+        observableDenIns.value = devInsServiceData.values.toList()
     }
 
     /**
@@ -141,6 +160,10 @@ class RepositoryImplTest : Repository {
      * To Fetch All DeviceInventory from Database*/
     override fun getDeviceInventoryList(): LiveData<Result<List<DeviceInventory>>> {
         TODO("Not yet implemented")
+    }
+
+    fun getDeviceInventories(): LiveData<List<DeviceInventory>> {
+        return observableDenIns
     }
 
     /**

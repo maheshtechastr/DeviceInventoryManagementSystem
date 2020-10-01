@@ -87,7 +87,9 @@ dependencies {
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
     testImplementation "androidx.test.ext:junit:1.1.2"
-
+// Test helpers for LiveData
+    testImplementation "android.arch.core:core-testing:$rootProject.arcCoreVersion"
+    androidTestImplementation "android.arch.core:core-testing:$rootProject.arcCoreVersion"
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 
     testImplementation "org.robolectric:robolectric:$rootProject.robolectricVersion"
