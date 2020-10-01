@@ -8,6 +8,11 @@
             <set />
           </value>
         </entry>
+        <entry key="/fragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="/fragment.kt">
           <value>
             <set />
@@ -44,6 +49,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/androidTest/java/com/mpg/nagarro/deviceinventorymgmt/ExampleInstrumentedTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/androidTest/java/com/mpg/nagarro/deviceinventorymgmt/data/local/FakeAndroidTestRepository.kt">
           <value>
             <set />
           </value>
@@ -408,6 +418,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/ui/worker/BackUpDbDataWork.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/ui/worker/ChildWorkerFactory.kt">
           <value>
             <set />
@@ -429,6 +444,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/ui/worker/MyWorkerFactory.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/ui/worker/NotificationWoker.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/ui/worker/NotificationWorker.kt">
           <value>
             <set />
           </value>
@@ -643,6 +668,26 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mpg/nagarro/deviceinventorymgmt/data/FakeDataSource.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mpg/nagarro/deviceinventorymgmt/data/RepositoryImplTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mpg/nagarro/deviceinventorymgmt/data/local/LocalInventoryRepositoryTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mpg/nagarro/deviceinventorymgmt/ui/devices/AddEditDeviceViewModelTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/build.gradle">
           <value>
             <set />
@@ -669,6 +714,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../android-testing-end_codelab_1/app/src/main/res/navigation/nav_graph.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-testing-end_codelab_1/app/src/test/java/com/example/android/architecture/blueprints/todoapp/data/source/DefaultTasksRepositoryTest.kt">
           <value>
             <set />
           </value>

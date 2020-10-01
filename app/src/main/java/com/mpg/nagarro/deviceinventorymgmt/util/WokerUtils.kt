@@ -1,6 +1,5 @@
 package com.mpg.nagarro.deviceinventorymgmt.util
 
-import timber.log.Timber
 
 
 /**
@@ -11,7 +10,7 @@ fun sleep() {
     try {
         Thread.sleep(DELAY_TIME_MILLIS, 0)
     } catch (e: InterruptedException) {
-        Timber.e(e.message)
+//        Timber.e(e.message)
     }
 
 }

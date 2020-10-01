@@ -187,7 +187,7 @@ interface InventoryDao {
      * @return all DeviceInventory.
      */
     @Query("SELECT * FROM DeviceInventory")
-    fun getDeviceInventories(): LiveData<List<DeviceInventory>>
+    fun getDeviceInventories(): List<DeviceInventory>
 
     /**
      * Get a DeviceInventory by id.

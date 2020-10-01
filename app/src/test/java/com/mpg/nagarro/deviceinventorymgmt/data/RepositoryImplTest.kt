@@ -1,20 +1,43 @@
 package com.mpg.nagarro.deviceinventorymgmt.data
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceEntity
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceInventory
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.EmployeeEntity
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.Result
-import javax.inject.Inject
 
-class RepositoryImpl @Inject constructor(private val inventoryDataSource: InventoryDataSource) :
-    Repository {
+
+class RepositoryImplTest : Repository {
+
+    var tasksServiceData: LinkedHashMap<String, DeviceEntity> = LinkedHashMap()
+
+    private val observableTasks = MutableLiveData<List<DeviceEntity>>()
 
     /**
-     * To add Device information into Database
-     * @param deviceEntity*/
+     *  Get Result DeviceEntity List*/
+    override suspend fun getDevices(): Result<List<DeviceEntity>> {
+        return Result.Success(tasksServiceData.values.toList())
+    }
+
+    /**
+     * To Fetch All Devices from Database*/
+    override fun getDeviceList(): LiveData<List<DeviceEntity>> {
+        return observableTasks
+    }
+
+
+    /**
+     * To add Device information into Database*/
+    fun addDevice(vararg deviceEntity: DeviceEntity) {
+        for (task in deviceEntity) {
+            tasksServiceData[task.deviceId.toString()] = task
+        }
+        observableTasks.value = tasksServiceData.values.toList()
+    }
+
     override suspend fun addDevice(deviceEntity: DeviceEntity) {
-        inventoryDataSource.addDevice(deviceEntity)
+        TODO("Not yet implemented")
     }
 
     /**
@@ -22,19 +45,14 @@ class RepositoryImpl @Inject constructor(private val inventoryDataSource: Invent
      *
      */
     override suspend fun getDeviceById(deviceId: Int): DeviceEntity? {
-        return inventoryDataSource.getDeviceById(deviceId)
+        TODO("Not yet implemented")
     }
 
-    /**
-     * To Fetch All Devices from Database*/
-    override fun getDeviceList(): LiveData<List<DeviceEntity>> {
-        return inventoryDataSource.getDeviceList()
-    }
 
     /**
      * To update Device information into Database*/
     override suspend fun updateDevice(deviceEntity: DeviceEntity) {
-        inventoryDataSource.updateDevice(deviceEntity)
+        TODO("Not yet implemented")
     }
 
     /**
@@ -45,45 +63,32 @@ class RepositoryImpl @Inject constructor(private val inventoryDataSource: Invent
      * @return the number of Devices updated. This should always be 1.
      */
     override suspend fun updateTotalInventory(totalInventory: Int, deviceId: Int): Int {
-        return inventoryDataSource.updateTotalInventory(totalInventory, deviceId)
+        TODO("Not yet implemented")
     }
 
     /**
-     * To remove device record from Database
-     * @param deviceId deviceId*/
+     * To remove device record from Database*/
     override suspend fun deleteDevice(deviceId: Int): Int {
-        return inventoryDataSource.deleteDevice(deviceId)
+        TODO("Not yet implemented")
     }
 
     /**
      * To Fetch All Available Devices from Database*/
     override fun observeAvailableDevices(): LiveData<List<DeviceEntity>> {
-        return inventoryDataSource.observeAvailableDevices()
+        TODO("Not yet implemented")
     }
 
     /**
      * To update Device Current Available information into Database*/
     override suspend fun updateAvailableInventory(currentInventory: Int, deviceId: Int): Int {
-        return inventoryDataSource.updateAvailableInventory(currentInventory, deviceId)
+        TODO("Not yet implemented")
     }
 
-    /**
-     *  Get Result DeviceEntity List*/
-    override suspend fun getDevices(): Result<List<DeviceEntity>> {
-        return inventoryDataSource.getDevices()
-    }
 
     /**
-     * To Fetch All Employees from Database*/
-    override fun getEmployeeList(): LiveData<List<EmployeeEntity>> {
-        return inventoryDataSource.getEmployeeList()
-    }
-
-    /**
-     * To add Employee information into Database
-     * @param employeeEntity*/
+     * To add Employee information into Database*/
     override suspend fun addEmployee(employeeEntity: EmployeeEntity) {
-        inventoryDataSource.addEmployee(employeeEntity)
+        TODO("Not yet implemented")
     }
 
     /**
@@ -93,44 +98,49 @@ class RepositoryImpl @Inject constructor(private val inventoryDataSource: Invent
      * @return the Employee with empId.
      */
     override suspend fun getEmployeeById(empId: Int): EmployeeEntity? {
-        return inventoryDataSource.getEmployeeById(empId)
+        TODO("Not yet implemented")
     }
 
     /**
      * To remove Employee record to Database*/
     override suspend fun deleteEmployee(empId: Int): Int {
-        return inventoryDataSource.deleteEmployee(empId)
+        TODO("Not yet implemented")
+    }
+
+    /**
+     * To Fetch All Employees from Database*/
+    override fun getEmployeeList(): LiveData<List<EmployeeEntity>> {
+        TODO("Not yet implemented")
+    }
+
+    /**
+     * To add DeviceInventory information into Database*/
+    override suspend fun addDeviceInventory(deviceInventory: DeviceInventory) {
+        TODO("Not yet implemented")
     }
 
     /**
      * To remove DeviceInventory record to Database*/
     override suspend fun deleteDeviceInventory(recordId: Int): Int {
-        return inventoryDataSource.deleteDeviceInventory(recordId)
+        TODO("Not yet implemented")
     }
 
     /**
      * To update DeviceInventory information into Database*/
     override suspend fun updateDeviceInventory(deviceInventory: DeviceInventory): Int {
-        return inventoryDataSource.updateDeviceInventory(deviceInventory)
+        TODO("Not yet implemented")
     }
 
     /**
      * To remove DeviceInventory record to Database*/
     override suspend fun updateInventoryStatus(recordId: Int, status: Int): Int {
-        return inventoryDataSource.updateInventoryStatus(recordId, status)
+        TODO("Not yet implemented")
     }
 
     /**
-     * To add DeviceInventory information into Database
-     * @param deviceInventory*/
-    override suspend fun addDeviceInventory(deviceInventory: DeviceInventory) {
-        inventoryDataSource.addDeviceInventory(deviceInventory)
-    }
-
-    /**
-     * To Fetch All DeviceInventories from Database*/
+     * To Fetch All DeviceInventory from Database*/
     override fun getDeviceInventoryList(): LiveData<Result<List<DeviceInventory>>> {
-        return inventoryDataSource.getDeviceInventoryList()
+        TODO("Not yet implemented")
     }
 
     /**
@@ -139,7 +149,7 @@ class RepositoryImpl @Inject constructor(private val inventoryDataSource: Invent
      * @return the number of DeviceInventory deleted. This should always be 1.
      */
     override suspend fun getDeviceInventoryById(recordId: Int): DeviceInventory? {
-        return inventoryDataSource.getDeviceInventoryById(recordId)
+        TODO("Not yet implemented")
     }
 
     /**
@@ -147,7 +157,6 @@ class RepositoryImpl @Inject constructor(private val inventoryDataSource: Invent
      * @return all DeviceInventory.
      */
     override suspend fun getAllIssuedOrLostInventoryOfEmpId(empId: Int): List<DeviceInventory> {
-        return inventoryDataSource.getAllIssuedOrLostInventoryOfEmpId(empId)
+        TODO("Not yet implemented")
     }
-
 }

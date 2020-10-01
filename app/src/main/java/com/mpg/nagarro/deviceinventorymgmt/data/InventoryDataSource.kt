@@ -26,6 +26,10 @@ interface InventoryDataSource {
     fun observeAvailableDevices(): LiveData<List<DeviceEntity>>
 
     /**
+     *  Get Result DeviceEntity List*/
+    suspend fun getDevices(): Result<List<DeviceEntity>>
+
+    /**
      * To update Device Current Available information into Database*/
     suspend fun updateAvailableInventory(currentInventory: Int, deviceId: Int): Int
 

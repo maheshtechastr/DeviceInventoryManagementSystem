@@ -126,6 +126,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
                 .setConstraints(constraints)
                 .build()
         continuation.enqueue()
+
         WorkManager.getInstance(this.applicationContext)
             .enqueueUniquePeriodicWork(
             "BACKUP_TABLE",

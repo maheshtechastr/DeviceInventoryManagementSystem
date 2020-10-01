@@ -8,15 +8,14 @@ import com.mpg.nagarro.deviceinventorymgmt.base.BaseViewModel
 import com.mpg.nagarro.deviceinventorymgmt.data.Repository
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceInventory
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceStatus
+import com.mpg.nagarro.deviceinventorymgmt.data.entity.Result
 import com.mpg.nagarro.deviceinventorymgmt.util.Event
 import com.mpg.nagarro.deviceinventorymgmt.util.Utils
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import com.mpg.nagarro.deviceinventorymgmt.data.entity.Result
 
 class DeviceAllottedListViewModel @Inject constructor(private val repository: Repository) :
     BaseViewModel() {
-    private val TAG = "DeviceAllottedListViewM"
     private var currentFiltering = DeviceStatus.ISSUED
     // Note, for testing and architecture purposes, it's bad practice to construct the repository
     // here. We'll show you how to fix this during the codelab
@@ -24,9 +23,10 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
     private val _forceUpdate = MutableLiveData<Boolean>(false)
 
 
-    private val _deviceInventoryList: LiveData<List<DeviceInventory>> =_forceUpdate.switchMap { forceUpdate ->
-        repository.getDeviceInventoryList().switchMap { filterTasks(it) }
-    }
+    private val _deviceInventoryList: LiveData<List<DeviceInventory>> =
+        _forceUpdate.switchMap { forceUpdate ->
+            repository.getDeviceInventoryList().switchMap { filterTasks(it) }
+        }
 
     var deviceInventoryList: LiveData<List<DeviceInventory>> =
         Transformations.map(_deviceInventoryList) {
@@ -49,6 +49,8 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
     val noDeviceInventoryIconRes: LiveData<Int> = _noDeviceInventoryIconRes
 
     private val _tasksAddViewVisible = MutableLiveData<Boolean>()
+
+    //not used
     val tasksAddViewVisible: LiveData<Boolean> = _tasksAddViewVisible
 
     // This LiveData depends on another so we can use a transformation.
@@ -58,7 +60,7 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
 
     init {
         setFiltering(currentFiltering)
-        loadTasks(false)
+        loadDatas(false)
     }
 
     fun updateDeviceStatus(deviceInventory: DeviceInventory, deviceStatus: DeviceStatus) {
@@ -129,7 +131,7 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
             }
         }
         // Refresh list
-        loadTasks(false)
+        loadDatas(false)
     }
 
     private fun setFilter(
@@ -143,18 +145,14 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
     }
 
     private fun filterTasks(tasksResult: Result<List<DeviceInventory>>): LiveData<List<DeviceInventory>> {
-        // TODO: This is a good case for liveData builder. Replace when stable.
         val result = MutableLiveData<List<DeviceInventory>>()
 
         if (tasksResult is Result.Success) {
-//            isDataLoadingError.value = false
             viewModelScope.launch {
                 result.value = filterItems(tasksResult.data, currentFiltering)
             }
         } else {
             result.value = emptyList()
-//            showSnackbarMessage(androidx.lifecycle.R.string.loading_tasks_error)
-//            isDataLoadingError.value = true
         }
 
         return result
@@ -163,7 +161,7 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
     /**
      * @param forceUpdate   Pass in true to refresh the data in the [TasksDataSource]
      */
-    fun loadTasks(forceUpdate: Boolean) {
+    fun loadDatas(forceUpdate: Boolean) {
         _forceUpdate.value = forceUpdate
     }
 

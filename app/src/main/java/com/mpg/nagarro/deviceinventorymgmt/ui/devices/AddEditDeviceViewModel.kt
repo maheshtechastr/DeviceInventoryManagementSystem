@@ -15,6 +15,7 @@ class AddEditDeviceViewModel
 
     val deviceName = MutableLiveData<String>()
     val totalInventory = MutableLiveData<String>()
+
     private val TAG = "AddEditDeviceViewModel"
 
     fun addDevice() {
@@ -27,11 +28,14 @@ class AddEditDeviceViewModel
         val totalInventory = getDeviceCount(inventory)
 
         val deviceEntity = DeviceEntity(name!!, totalInventory, totalInventory)
+        addDevice(deviceEntity)
+    }
+
+    fun addDevice(deviceEntity: DeviceEntity) {
         viewModelScope.launch {
             repository.addDevice(deviceEntity)
         }
     }
-
 
     private fun getDeviceCount(totalC: String?): Int {
         return if (totalC == null || totalC.isEmpty())
@@ -43,4 +47,5 @@ class AddEditDeviceViewModel
                 1
             }
     }
+
 }

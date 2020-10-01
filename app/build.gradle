@@ -40,51 +40,74 @@ android {
 
 dependencies {
 
-    implementation "androidx.appcompat:appcompat:$appCompatVersion"
-    implementation "androidx.cardview:cardview:$cardVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$contraintVersion"
-    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
-    implementation "androidx.annotation:annotation:$androidXAnnotations"
+    implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
+    implementation "androidx.cardview:cardview:$rootProject.cardVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.contraintVersion"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
+    implementation "androidx.annotation:annotation:$rootProject.androidXAnnotations"
+
     //Nav host
-    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
-    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
 
     // Room components
     implementation "androidx.room:room-runtime:$rootProject.roomVersion"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
-    androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
+
 
 // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.archLifecycleVersion"
+
 // Kotlin components
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutinesVersion"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesVersion"
 
 // Material design
     implementation "com.google.android.material:material:$rootProject.materialVersion"
-    implementation "net.steamcrafted:materialiconlib:$materialIconVersion"
-// Testing
-    testImplementation 'junit:junit:4.13'
-    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
-    testImplementation 'androidx.test.ext:junit:1.1.2'
+    implementation "net.steamcrafted:materialiconlib:$rootProject.materialIconVersion"
 
     //dagger2
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-// Assisted Inject
-    compileOnly "com.squareup.inject:assisted-inject-annotations-dagger2:$assisted_inject_version"
-    kapt "com.squareup.inject:assisted-inject-processor-dagger2:$assisted_inject_version"
+    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
 
     //worker
-    implementation "androidx.work:work-runtime-ktx:$workerVersion"
-    implementation "com.jakewharton.timber:timber:4.7.1"
+    implementation "androidx.work:work-runtime-ktx:$rootProject.workerVersion"
+    //implementation "com.jakewharton.timber:timber:4.7.1"
     implementation 'com.opencsv:opencsv:5.2'
+
+    // Testing
+    testImplementation "junit:junit:$rootProject.junitVersion"
+    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
+    testImplementation "androidx.test.ext:junit:1.1.2"
+
+    androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
+
+    testImplementation "org.robolectric:robolectric:$rootProject.robolectricVersion"
+
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$rootProject.coroutinesVersion"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$rootProject.coroutinesVersion"
+
+    // AndroidX Test - JVM testing
+    testImplementation "androidx.test:core-ktx:$rootProject.androidXTestCoreVersion"
+    testImplementation "androidx.test.ext:junit:$rootProject.androidXTestExtKotlinRunnerVersion"
+
+    // AndroidX Test - Instrumented testing
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.androidXTestExtKotlinRunnerVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
+
+    implementation "androidx.fragment:fragment-testing:$rootProject.fragmentVersion"
+    implementation "androidx.test:core:$rootProject.androidXTestCoreVersion"
+
+    // Dependencies for Android instrumented unit tests
+    androidTestImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:$rootProject.dexMakerVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
 }

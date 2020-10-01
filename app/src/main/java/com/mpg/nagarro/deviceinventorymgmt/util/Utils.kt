@@ -38,6 +38,10 @@ object Utils {
         return (name == null || name.isEmpty())
     }
 
+    fun getDifferenceInDays(timeInSec: Long): Long {
+        return (timeInSec - (System.currentTimeMillis() / 1000)) /
+                (24 * 60 * 60)
+    }
 
     fun <T> Fragment.showDialog(
         title: String, message: String,
