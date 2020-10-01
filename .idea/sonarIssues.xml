@@ -58,6 +58,31 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/androidTest/java/com/mpg/nagarro/deviceinventorymgmt/ui/devices/AddEditDeviceFragmentTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/androidTest/java/com/mpg/nagarro/deviceinventorymgmt/ui/devices/DeviceListFragmentTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/androidTest/java/com/mpg/nagarro/deviceinventorymgmt/ui/employee/AddEditEmployeeFragmentTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/androidTest/java/com/mpg/nagarro/deviceinventorymgmt/ui/employee/EmployeeListFragmentTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/androidTest/java/com/mpg/nagarro/deviceinventorymgmt/ui/inventory/DeviceAllotmentFragmentTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <value>
             <set />
