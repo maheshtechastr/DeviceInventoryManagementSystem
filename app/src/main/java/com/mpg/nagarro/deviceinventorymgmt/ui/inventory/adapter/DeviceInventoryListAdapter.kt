@@ -31,7 +31,7 @@ class DeviceInventoryListAdapter @Inject constructor(private val deviceAllottedL
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: DeviceInventory, viewModel: DeviceAllottedListViewModel) {
-            binding.viewmodel = viewModel
+            binding.viewModel = viewModel
             binding.deviceinfo = item
             binding.executePendingBindings()
         }

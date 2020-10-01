@@ -18,7 +18,7 @@ class DeviceListFragment : BaseFragment<DeviceListFragmentBinding, DeviceListVie
     OnDeviceItemClickListener, DialogCallBack<DeviceEntity> {
 
     override val bindingVariable: Int
-        get() = BR.viewmodel
+        get() = BR.viewModel
 
     @Inject
     lateinit var listAdapter: DeviceListAdapter
@@ -26,8 +26,6 @@ class DeviceListFragment : BaseFragment<DeviceListFragmentBinding, DeviceListVie
     override fun getLayout() = R.layout.device_list_fragment
 
     override fun getViewModel() = DeviceListViewModel::class.java
-
-    private val TAG = "DeviceListFragment"
 
     override fun onCreateView(rootView: View) {
         setUpAdapter()
@@ -39,7 +37,6 @@ class DeviceListFragment : BaseFragment<DeviceListFragmentBinding, DeviceListVie
         listAdapter.setItemClickListener(this)
 
         viewModel.showMessage.observe(viewLifecycleOwner, {
-//            viewDataBinding.root.showToast(it, Toast.LENGTH_LONG)
             viewDataBinding.root.showSnackbar(it)
 
         })

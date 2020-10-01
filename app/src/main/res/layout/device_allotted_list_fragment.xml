@@ -10,7 +10,7 @@
         <import type="androidx.core.content.ContextCompat" />
 
         <variable
-            name="viewmodel"
+            name="viewModel"
             type="com.mpg.nagarro.deviceinventorymgmt.ui.inventory.DeviceAllottedListViewModel" />
     </data>
 
@@ -27,8 +27,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/app_name"
             android:padding="2dp"
-            android:visibility="@{viewmodel.empty ? View.GONE : View.VISIBLE}"
-            android:text="@{context.getString(viewmodel.currentFilteringLabel)}"
+            android:visibility="@{viewModel.empty ? View.GONE : View.VISIBLE}"
+            android:text="@{context.getString(viewModel.currentFilteringLabel)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,8 +36,8 @@
             android:id="@+id/inventory_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:visibility="@{viewmodel.empty ? View.GONE : View.VISIBLE}"
-            app:items="@{viewmodel.deviceInventoryList}"
+            android:visibility="@{viewModel.empty ? View.GONE : View.VISIBLE}"
+            app:items="@{viewModel.deviceInventoryList}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_page_title"
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:orientation="vertical"
-            android:visibility="@{viewmodel.empty ? View.VISIBLE : View.GONE}"
+            android:visibility="@{viewModel.empty ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
                 android:layout_height="96dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/app_name"
-                android:src="@{ContextCompat.getDrawable(context, viewmodel.noDeviceInventoryIconRes)}" />
+                android:src="@{ContextCompat.getDrawable(context, viewModel.noDeviceInventoryIconRes)}" />
 
             <TextView
                 android:id="@+id/no_items_text"
@@ -72,7 +72,7 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/list_item_padding"
                 android:hint="@string/no_inventory"
-                android:text="@{context.getString(viewmodel.noDeviceInventoriesLabel)}"
+                android:text="@{context.getString(viewModel.noDeviceInventoriesLabel)}"
                  />
         </LinearLayout>
 

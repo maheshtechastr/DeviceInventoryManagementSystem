@@ -1,6 +1,7 @@
 package com.mpg.nagarro.deviceinventorymgmt.ui.inventory
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.mpg.nagarro.deviceinventorymgmt.base.BaseViewModel
@@ -9,6 +10,7 @@ import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceEntity
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceInventory
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceStatus
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.EmployeeEntity
+import com.mpg.nagarro.deviceinventorymgmt.util.Event
 import com.mpg.nagarro.deviceinventorymgmt.util.Utils
 import kotlinx.coroutines.launch
 import java.util.*
@@ -18,6 +20,9 @@ class DeviceAllotmentViewModel @Inject constructor(private val repository: Repos
     BaseViewModel() {
     private val devices: LiveData<List<DeviceEntity>> = repository.observeAvailableDevices()
     val employees: LiveData<List<EmployeeEntity>> = repository.getEmployeeList()
+
+    private val _taskUpdatedEvent = MutableLiveData<Event<Unit>>()
+    val taskUpdatedEvent: LiveData<Event<Unit>> = _taskUpdatedEvent
 
     val employeeNames: LiveData<List<String>> = Transformations.map(employees) {
         it.map { employeeEntity ->
@@ -64,6 +69,7 @@ class DeviceAllotmentViewModel @Inject constructor(private val repository: Repos
                 deviceEntity.deviceId
             )
             isLoading.value = false
+            _taskUpdatedEvent.postValue(Event(Unit))
         }
     }
 

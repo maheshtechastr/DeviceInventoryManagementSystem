@@ -18,11 +18,12 @@ class EmployeeListViewModel @Inject constructor(private val repository: Reposito
         it.isEmpty()
     }
 
-    fun deleteRow(entity: EmployeeEntity) = viewModelScope.launch {
-        val deviceInventories = repository.getAllIssuedOrLostInventoryOfEmpId(entity.empId)
-        if (deviceInventories.isEmpty())
-            repository.deleteEmployee(entity.empId)
-        else
-            showMessage.postValue("\" ${entity.name} \" can't be deleted \n He/She has not  returned the devices or lost")
+    fun deleteRow(item: EmployeeEntity) = viewModelScope.launch {
+        val deviceInventories = repository.getAllIssuedOrLostInventoryOfEmpId(item.empId)
+        if (deviceInventories.isEmpty()) {
+            repository.deleteEmployee(item.empId)
+            showMessage.postValue("${item.name} has been deleted")
+        } else
+            showMessage.postValue("\" ${item.name} \" can't be deleted \n He/She has not  returned the devices or lost")
     }
 }

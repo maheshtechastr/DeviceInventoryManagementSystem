@@ -1,6 +1,7 @@
 package com.mpg.nagarro.deviceinventorymgmt.ui.devices
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.mpg.nagarro.deviceinventorymgmt.base.BaseViewModel
@@ -20,12 +21,12 @@ class DeviceListViewModel @Inject constructor(private val repository: Repository
     }
 
     fun deleteRowAction(item: DeviceEntity) = viewModelScope.launch {
-
         val deviceEntity = repository.getDeviceById(item.deviceId)
         deviceEntity?.let {
-            if (it.totalInventory == it.currentAvailableInventory)
+            if (it.totalInventory == it.currentAvailableInventory) {
                 repository.deleteDevice(item.deviceId)
-            else
+                showMessage.postValue("${item.name} has been deleted")
+            } else
                 showMessage.postValue("\" ${item.name} \" can't be deleted \n  Inventory either not returned or lost. ")
         }
 

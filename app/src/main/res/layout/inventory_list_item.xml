@@ -9,7 +9,7 @@
         <import type="com.mpg.nagarro.deviceinventorymgmt.util.Utils" />
 
         <variable
-            name="viewmodel"
+            name="viewModel"
             type="com.mpg.nagarro.deviceinventorymgmt.ui.inventory.DeviceAllottedListViewModel" />
 
         <variable
@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:onClick="@{()->viewmodel.updateDeviceStatus(deviceinfo, DeviceStatus.RETURNED)}"
+                android:onClick="@{()->viewModel.updateDeviceStatus(deviceinfo, DeviceStatus.RETURNED)}"
                 android:text="@string/status_returned"
                 app:enabled="@{deviceinfo.status}"
                 app:layout_constraintBaseline_toBaselineOf="@id/tv_employee_name"
@@ -92,7 +92,7 @@
                 android:id="@+id/cb_status_lost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="@{()->viewmodel.updateDeviceStatus(deviceinfo, DeviceStatus.LOST)}"
+                android:onClick="@{()->viewModel.updateDeviceStatus(deviceinfo, DeviceStatus.LOST)}"
                 android:text="@string/status_lost"
                 app:enabled="@{deviceinfo.status}"
                 app:layout_constraintStart_toStartOf="@id/cb_status_returned"

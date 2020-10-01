@@ -23,7 +23,7 @@ class ScheduleBackupWorker constructor(
     private val TAG = "HelloWorldWorker"
     lateinit var exportDbUtil: ExportDbUtil
 
-    override suspend fun doWork(): Result = coroutineScope {
+    override suspend fun doWork(): Result {
 
         Log.d(TAG, "onCreate= Injected dao: ")
         exportDbUtil = ExportDbUtil(appContext, "InventoryDatabase.db", OUTPUT_PATH)
@@ -32,7 +32,7 @@ class ScheduleBackupWorker constructor(
         exportDbUtil.exportSingleTable("EmployeeEntity", "EmployeeEntity_${timeInSecond}")
         exportDbUtil.exportSingleTable("DeviceInventory", "DeviceInventory_${timeInSecond}")
         Log.d(TAG, "onCreate= Hello world!===${exportDbUtil.isBackupExist(OUTPUT_PATH)}")
-        return@coroutineScope Result.success()
+        return Result.success()
     }
 
 }

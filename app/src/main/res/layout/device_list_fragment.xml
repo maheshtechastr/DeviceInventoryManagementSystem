@@ -8,7 +8,7 @@
         <import type="android.view.View" />
 
         <variable
-            name="viewmodel"
+            name="viewModel"
             type="com.mpg.nagarro.deviceinventorymgmt.ui.devices.DeviceListViewModel" />
     </data>
 
@@ -24,8 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingVertical="10dp"
-            android:visibility="@{viewmodel.empty ? View.GONE : View.VISIBLE}"
-            app:items="@{viewmodel.devices}"
+            android:visibility="@{viewModel.empty ? View.GONE : View.VISIBLE}"
+            app:items="@{viewModel.devices}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:orientation="vertical"
-            android:visibility="@{viewmodel.empty ? View.VISIBLE : View.GONE}"
+            android:visibility="@{viewModel.empty ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -17,7 +17,7 @@ class DeviceAllotmentFragment :
     private val TAG = "DeviceAllotmentFragment"
 
     override val bindingVariable: Int
-        get() = BR.viewmodel
+        get() = BR.viewModel
 
     override fun getLayout() = R.layout.device_allotment_fragment
 
@@ -58,6 +58,10 @@ class DeviceAllotmentFragment :
         viewDataBinding.btnSubmit.setOnClickListener {
             saveData()
         }
+
+        viewModel.taskUpdatedEvent.observe(viewLifecycleOwner, {
+            gotBack()
+        })
     }
 
     private fun saveData() {
@@ -88,11 +92,6 @@ class DeviceAllotmentFragment :
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         viewDataBinding.autoTextViewEmployeeName.setAdapter(adapter)
         viewDataBinding.autoTextViewEmployeeName.onItemSelectedListener = this
-
-        viewModel.isLoading.observe(viewLifecycleOwner, {
-            if (!it)
-                gotBack()
-        })
     }
 
     /**
@@ -111,4 +110,5 @@ class DeviceAllotmentFragment :
     private fun gotBack() {
         findNavController().popBackStack()
     }
+
 }

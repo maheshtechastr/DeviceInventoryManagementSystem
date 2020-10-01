@@ -35,7 +35,7 @@ class DeviceListAdapter @Inject constructor(private val viewModel: DeviceListVie
             itemClickListener: OnDeviceItemClickListener?
         ) {
             binding.deviceinfo = item
-            binding.viewmodel = viewModel
+            binding.viewModel = viewModel
             binding.ivDeleteRow.setOnClickListener {
                 itemClickListener?.onItemClicked(adapterPosition, item)
             }

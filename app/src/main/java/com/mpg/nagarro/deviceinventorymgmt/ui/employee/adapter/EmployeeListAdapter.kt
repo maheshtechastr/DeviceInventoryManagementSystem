@@ -44,7 +44,7 @@ class EmployeeListAdapter @Inject constructor(private val employeeListViewModel:
             itemClickListener: OnItemClickListener?
         ) {
             binding.employeeinfo = item
-            binding.viewmodel = viewModel
+            binding.viewModel = viewModel
             binding.ivDeleteRow.setOnClickListener {
                 itemClickListener?.onItemClicked(adapterPosition, item)
             }

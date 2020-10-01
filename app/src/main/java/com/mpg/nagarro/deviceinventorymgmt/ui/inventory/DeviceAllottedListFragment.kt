@@ -20,7 +20,7 @@ class DeviceAllottedListFragment :
     private val TAG = "DeviceAllottedListFragm"
 
     override val bindingVariable: Int
-        get() = BR.viewmodel
+        get() = BR.viewModel
 
     @Inject
     lateinit var listAdapter: DeviceInventoryListAdapter

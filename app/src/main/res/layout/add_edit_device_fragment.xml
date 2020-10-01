@@ -64,6 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/add_device"
+                android:onClick="@{()->viewModel.addDevice()}"
                 app:layout_constraintEnd_toStartOf="@id/deviceCount"
                 app:layout_constraintTop_toBottomOf="@id/deviceCount" />
 

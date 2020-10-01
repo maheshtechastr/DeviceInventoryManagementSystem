@@ -16,7 +16,7 @@ class EmployeeListFragment : BaseFragment<EmployeeListFragmentBinding, EmployeeL
 
 
     override val bindingVariable: Int
-        get() = BR.viewmodel
+        get() = BR.viewModel
 
     @Inject
     lateinit var listAdapter: EmployeeListAdapter
@@ -32,12 +32,11 @@ class EmployeeListFragment : BaseFragment<EmployeeListFragmentBinding, EmployeeL
         viewDataBinding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.addEditEmployeeFragment)
         }
-//        viewModel.employees.observe(viewLifecycleOwner, {
-//            listAdapter.submitList(it)
-//        })
+
         viewModel.showMessage.observe(viewLifecycleOwner, {
             viewDataBinding.root.showSnackbar(it)
         })
+
     }
 
     /**Add Adapter to view*/

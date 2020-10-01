@@ -11,13 +11,14 @@ class AddEditEmployeeFragment :
     BaseFragment<AddEditEmployeeFragmentBinding, AddEditEmployeeViewModel>() {
 
     override val bindingVariable: Int
-        get() = BR.viewmodel
+        get() = BR.viewModel
 
     override fun getLayout() = R.layout.add_edit_employee_fragment
 
     override fun getViewModel() = AddEditEmployeeViewModel::class.java
 
     override fun onCreateView(rootView: View) {
+
         viewDataBinding.btnAddEmployee.setOnClickListener {
             viewModel.addEmployee()
             findNavController().popBackStack()

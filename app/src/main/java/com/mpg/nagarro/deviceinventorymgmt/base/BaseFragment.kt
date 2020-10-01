@@ -20,9 +20,10 @@ import javax.inject.Inject
 
 abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
 
+    abstract val bindingVariable: Int
+
     lateinit var viewDataBinding: VB
     lateinit var viewModel: VM
-    abstract val bindingVariable: Int
 
     private lateinit var progressAlertDialog: AlertDialog
 
@@ -45,7 +46,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
         AndroidSupportInjection.inject(this)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(getViewModel())
-
+        handleObserver()
     }
 
     override fun onCreateView(
@@ -53,17 +54,13 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
         savedInstanceState: Bundle?
     ): View? {
         viewDataBinding = DataBindingUtil.inflate(inflater, getLayout(), container, false)
-
+        viewDataBinding.setVariable(bindingVariable, viewModel)
         return viewDataBinding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
-
-        viewDataBinding.setVariable(bindingVariable, viewModel)
-
         onCreateView(viewDataBinding.root)
     }
 
