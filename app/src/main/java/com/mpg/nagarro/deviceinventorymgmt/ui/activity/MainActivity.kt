@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
             )
 
         val periodicWork =
-            PeriodicWorkRequest.Builder(ScheduleBackupWorker::class.java, 15, TimeUnit.MINUTES)
+            PeriodicWorkRequest.Builder(ScheduleBackupWorker::class.java, 12, TimeUnit.HOURS)
                 .setConstraints(constraints)
                 .build()
         continuation.enqueue()

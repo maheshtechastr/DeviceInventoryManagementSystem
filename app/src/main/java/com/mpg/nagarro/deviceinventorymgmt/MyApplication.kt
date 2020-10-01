@@ -50,11 +50,11 @@ class MyApplication : Application(), HasActivityInjector {
         // network is unmetered
         val constraints = Constraints.Builder()
             .setRequiresCharging(true)
-//            .setRequiredNetworkType(NetworkType.UNMETERED)
+            .setRequiredNetworkType(NetworkType.UNMETERED)
             .build()
 
         // Specify that the work should attempt to run every day
-        val work = PeriodicWorkRequestBuilder<NotificationWorker>(15, TimeUnit.MINUTES)
+        val work = PeriodicWorkRequestBuilder<NotificationWorker>(2, TimeUnit.HOURS)
             .setConstraints(constraints)
             .build()
 
