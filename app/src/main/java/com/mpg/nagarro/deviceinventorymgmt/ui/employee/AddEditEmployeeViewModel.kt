@@ -1,8 +1,8 @@
 package com.mpg.nagarro.deviceinventorymgmt.ui.employee
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mpg.nagarro.deviceinventorymgmt.base.BaseViewModel
+import com.mpg.nagarro.deviceinventorymgmt.common.SingleLiveEvent
 import com.mpg.nagarro.deviceinventorymgmt.data.Repository
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.EmployeeEntity
 import com.mpg.nagarro.deviceinventorymgmt.util.Utils
@@ -11,8 +11,8 @@ import javax.inject.Inject
 
 class AddEditEmployeeViewModel @Inject constructor(private val repository: Repository) :
     BaseViewModel() {
-    val empEmail = MutableLiveData<String>()
-    val empName = MutableLiveData<String>()
+    val empEmail = SingleLiveEvent<String>()
+    val empName = SingleLiveEvent<String>()
 
     fun addEmployee() {
         val employeeName = empName.value

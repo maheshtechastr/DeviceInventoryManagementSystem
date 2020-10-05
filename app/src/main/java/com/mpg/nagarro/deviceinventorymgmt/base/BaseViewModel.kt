@@ -2,12 +2,12 @@ package com.mpg.nagarro.deviceinventorymgmt.base
 
 import androidx.databinding.Observable
 import androidx.databinding.PropertyChangeRegistry
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.mpg.nagarro.deviceinventorymgmt.common.SingleLiveEvent
 
 abstract class BaseViewModel : ViewModel(), Observable {
-    val isLoading: MutableLiveData<Boolean> = MutableLiveData()
-    val showMessage: MutableLiveData<String> = MutableLiveData()
+    val isLoading: SingleLiveEvent<Boolean> = SingleLiveEvent()
+    val showMessage: SingleLiveEvent<String> = SingleLiveEvent()
 
     private val callbacks = PropertyChangeRegistry()
 

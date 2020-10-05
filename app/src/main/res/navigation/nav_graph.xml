@@ -15,15 +15,19 @@
     <fragment
         android:id="@+id/add_edit_device_fragment"
         android:name="com.mpg.nagarro.deviceinventorymgmt.ui.devices.AddEditDeviceFragment"
-        android:label="AddEditDeviceFragment" >
+        android:label="AddEditDeviceFragment">
         <action
             android:id="@+id/action_add_edit_device_fragment_to_device_list_fragment"
             app:destination="@id/device_list_fragment" />
+        <argument
+            android:name="deviceId"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/employee_list_fragment"
         android:name="com.mpg.nagarro.deviceinventorymgmt.ui.employee.EmployeeListFragment"
-        android:label="EmployeeListFragment" >
+        android:label="EmployeeListFragment">
         <action
             android:id="@+id/action_employeeListFragment_to_device_list_fragment"
             app:destination="@id/device_list_fragment" />
@@ -34,7 +38,7 @@
     <fragment
         android:id="@+id/device_allotted_list_fragment"
         android:name="com.mpg.nagarro.deviceinventorymgmt.ui.inventory.DeviceAllottedListFragment"
-        android:label="DeviceAllottedListFragment" >
+        android:label="DeviceAllottedListFragment">
         <action
             android:id="@+id/action_deviceAllottedListFragment_to_deviceAllotmentFragment"
             app:destination="@id/deviceAllotmentFragment" />
@@ -46,7 +50,7 @@
 
         android:id="@+id/deviceAllotmentFragment"
         android:name="com.mpg.nagarro.deviceinventorymgmt.ui.inventory.DeviceAllotmentFragment"
-        android:label="DeviceAllotmentFragment" >
+        android:label="DeviceAllotmentFragment">
         <action
             android:id="@+id/action_deviceAllotmentFragment_to_deviceAllottedListFragment"
             app:destination="@id/device_allotted_list_fragment" />
@@ -54,10 +58,16 @@
     <fragment
         android:id="@+id/addEditEmployeeFragment"
         android:name="com.mpg.nagarro.deviceinventorymgmt.ui.employee.AddEditEmployeeFragment"
-        android:label="AddEditEmployeeFragment" >
+        android:label="AddEditEmployeeFragment">
+        <argument
+            android:name="employeeId"
+            app:argType="integer"
+            android:defaultValue="0" />
         <action
             android:id="@+id/action_addEditEmployeeFragment_to_employee_list_fragment"
             app:destination="@id/employee_list_fragment" />
     </fragment>
-
+    <argument
+        android:name="userMessage"
+        android:defaultValue="0" />
 </navigation>

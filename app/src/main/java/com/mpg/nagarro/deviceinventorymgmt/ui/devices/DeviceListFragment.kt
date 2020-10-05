@@ -10,8 +10,11 @@ import com.mpg.nagarro.deviceinventorymgmt.databinding.DeviceListFragmentBinding
 import com.mpg.nagarro.deviceinventorymgmt.ui.devices.adapter.DeviceListAdapter
 import com.mpg.nagarro.deviceinventorymgmt.ui.devices.adapter.OnDeviceItemClickListener
 import com.mpg.nagarro.deviceinventorymgmt.util.DialogCallBack
+import com.mpg.nagarro.deviceinventorymgmt.util.EventObserver
 import com.mpg.nagarro.deviceinventorymgmt.util.Utils.showDialog
 import com.mpg.nagarro.deviceinventorymgmt.util.showSnackbar
+import com.mpg.nagarro.deviceinventorymgmt.util.showToast
+import timber.log.Timber
 import javax.inject.Inject
 
 class DeviceListFragment : BaseFragment<DeviceListFragmentBinding, DeviceListViewModel>(),
@@ -31,7 +34,7 @@ class DeviceListFragment : BaseFragment<DeviceListFragmentBinding, DeviceListVie
         setUpAdapter()
 
         viewDataBinding.floatingActionButton.setOnClickListener {
-            findNavController().navigate(R.id.add_edit_device_fragment)
+            navigateToAddNewDevice()
         }
 
         listAdapter.setItemClickListener(this)
@@ -40,6 +43,24 @@ class DeviceListFragment : BaseFragment<DeviceListFragmentBinding, DeviceListVie
             viewDataBinding.root.showSnackbar(it)
 
         })
+        viewModel.isItemClicked.observe(viewLifecycleOwner, EventObserver {
+            Timber.e("Item Clicked--------")
+            view?.showToast("Item clocked------")
+        })
+    }
+
+    private fun navigateToAddNewDevice() {
+        val action = DeviceListFragmentDirections
+            .actionDeviceListFragmentToAddEditDeviceFragment(
+                0
+            )
+        findNavController().navigate(action)
+    }
+
+    private fun openDeviceDetails(deviceId: Int) {
+        val action =
+            DeviceListFragmentDirections.actionDeviceListFragmentToAddEditDeviceFragment(deviceId)
+        findNavController().navigate(action)
     }
 
     private fun setUpAdapter() {

@@ -18,6 +18,7 @@ interface Repository {
      */
     suspend fun getDeviceById(deviceId: Int): DeviceEntity?
 
+    suspend fun getDeviceRById(deviceId: Int): Result<DeviceEntity>
     /**
      * To Fetch All Devices from Database*/
     fun getDeviceList(): LiveData<List<DeviceEntity>>

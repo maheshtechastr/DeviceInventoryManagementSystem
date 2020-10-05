@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.*
 import com.mpg.nagarro.deviceinventorymgmt.R
 import com.mpg.nagarro.deviceinventorymgmt.base.BaseViewModel
+import com.mpg.nagarro.deviceinventorymgmt.common.SingleLiveEvent
 import com.mpg.nagarro.deviceinventorymgmt.data.Repository
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceInventory
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceStatus
@@ -24,7 +25,7 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
 
 
     private val _deviceInventoryList: LiveData<List<DeviceInventory>> =
-        _forceUpdate.switchMap { forceUpdate ->
+        _forceUpdate.switchMap {
             repository.getDeviceInventoryList().switchMap { filterTasks(it) }
         }
 
@@ -33,22 +34,22 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
             filterItems(it, currentFiltering)
         }
 
-    private val _openDeviceInventoryEvent = MutableLiveData<Event<String>>()
+    private val _openDeviceInventoryEvent = SingleLiveEvent<Event<String>>()
     val openDeviceInventoryEvent: LiveData<Event<String>> = _openDeviceInventoryEvent
 
-    private val _newDeviceInventoryEvent = MutableLiveData<Event<Unit>>()
+    private val _newDeviceInventoryEvent = SingleLiveEvent<Event<Unit>>()
     val newDeviceInventoryEvent: LiveData<Event<Unit>> = _newDeviceInventoryEvent
 
-    private val _currentFilteringLabel = MutableLiveData<Int>()
+    private val _currentFilteringLabel = SingleLiveEvent<Int>()
     val currentFilteringLabel: LiveData<Int> = _currentFilteringLabel
 
-    private val _noDeviceInventoriesLabel = MutableLiveData<Int>()
+    private val _noDeviceInventoriesLabel = SingleLiveEvent<Int>()
     val noDeviceInventoriesLabel: LiveData<Int> = _noDeviceInventoriesLabel
 
-    private val _noDeviceInventoryIconRes = MutableLiveData<Int>()
+    private val _noDeviceInventoryIconRes = SingleLiveEvent<Int>()
     val noDeviceInventoryIconRes: LiveData<Int> = _noDeviceInventoryIconRes
 
-    private val _tasksAddViewVisible = MutableLiveData<Boolean>()
+    private val _tasksAddViewVisible = SingleLiveEvent<Boolean>()
     val tasksAddViewVisible: LiveData<Boolean> = _tasksAddViewVisible
 
     // This LiveData depends on another so we can use a transformation.
@@ -143,7 +144,7 @@ class DeviceAllottedListViewModel @Inject constructor(private val repository: Re
     }
 
     private fun filterTasks(tasksResult: Result<List<DeviceInventory>>): LiveData<List<DeviceInventory>> {
-        val result = MutableLiveData<List<DeviceInventory>>()
+        val result = SingleLiveEvent<List<DeviceInventory>>()
 
         if (tasksResult is Result.Success) {
             viewModelScope.launch {

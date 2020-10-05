@@ -9,6 +9,7 @@ import com.mpg.nagarro.deviceinventorymgmt.ui.worker.NotificationWorker
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -24,6 +25,8 @@ class MyApplication : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
+        if (BuildConfig.DEBUG)
+            Timber.plant(Timber.DebugTree())
         DaggerAppComponent.builder()
             .application(this)
             .build()

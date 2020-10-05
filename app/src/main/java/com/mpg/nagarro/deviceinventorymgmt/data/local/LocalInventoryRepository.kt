@@ -7,13 +7,11 @@ import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceEntity
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceInventory
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.EmployeeEntity
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.Result
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 class LocalInventoryRepository @Inject constructor(
     private val dao: InventoryDao,
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+//    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : InventoryDataSource {
     /**
      * To add Device information into Database*/
@@ -27,6 +25,13 @@ class LocalInventoryRepository @Inject constructor(
      */
     override suspend fun getDeviceById(deviceId: Int): DeviceEntity? {
         return dao.getDeviceById(deviceId)
+    }
+
+    override suspend fun getDeviceRById(deviceId: Int): Result<DeviceEntity> {
+        val deviceEntity = getDeviceById(deviceId)
+        return if (deviceEntity != null)
+            Result.Success(deviceEntity)
+        else Result.Error(Exception("Device Not Found!"))
     }
 
     /**

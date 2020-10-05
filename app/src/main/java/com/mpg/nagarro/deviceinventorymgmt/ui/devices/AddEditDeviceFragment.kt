@@ -1,17 +1,20 @@
 package com.mpg.nagarro.deviceinventorymgmt.ui.devices
 
-import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.mpg.nagarro.deviceinventorymgmt.BR
 import com.mpg.nagarro.deviceinventorymgmt.R
 import com.mpg.nagarro.deviceinventorymgmt.base.BaseFragment
 import com.mpg.nagarro.deviceinventorymgmt.databinding.AddEditDeviceFragmentBinding
+import com.mpg.nagarro.deviceinventorymgmt.ui.employee.AddEditEmployeeFragmentArgs
 import com.mpg.nagarro.deviceinventorymgmt.util.showSnackbar
+import timber.log.Timber
 
 class AddEditDeviceFragment :
     BaseFragment<AddEditDeviceFragmentBinding, AddEditDeviceViewModel>() {
-    private val TAG = "AddEditDeviceFragment"
+
+    private val args: AddEditEmployeeFragmentArgs by navArgs()
 
     override val bindingVariable: Int
         get() = BR.viewModel
@@ -22,7 +25,7 @@ class AddEditDeviceFragment :
 
     override fun onCreateView(rootView: View) {
 
-        Log.i(TAG, "onCreateView: $rootView")
+        Timber.i("onCreateView: $rootView")
 
         viewModel.taskUpdatedEvent.observe(viewLifecycleOwner, {
             getBack()

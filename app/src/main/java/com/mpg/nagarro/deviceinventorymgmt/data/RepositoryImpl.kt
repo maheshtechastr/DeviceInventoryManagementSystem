@@ -25,6 +25,10 @@ class RepositoryImpl @Inject constructor(private val inventoryDataSource: Invent
         return inventoryDataSource.getDeviceById(deviceId)
     }
 
+    override suspend fun getDeviceRById(deviceId: Int): Result<DeviceEntity> {
+        return inventoryDataSource.getDeviceRById(deviceId)
+    }
+
     /**
      * To Fetch All Devices from Database*/
     override fun getDeviceList(): LiveData<List<DeviceEntity>> {
