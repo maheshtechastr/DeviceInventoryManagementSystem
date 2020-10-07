@@ -26,13 +26,14 @@ import com.mpg.nagarro.deviceinventorymgmt.ui.worker.CleanupWorker
 import com.mpg.nagarro.deviceinventorymgmt.ui.worker.ScheduleBackupWorker
 import dagger.android.AndroidInjection
 import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.DaggerAppCompatActivity
 import dagger.android.support.HasSupportFragmentInjector
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
+class MainActivity : DaggerAppCompatActivity(), HasSupportFragmentInjector {
 
     /*
      * Rather than injecting the ViewModelFactory

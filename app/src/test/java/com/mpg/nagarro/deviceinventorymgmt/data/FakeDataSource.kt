@@ -22,6 +22,10 @@ class FakeDataSource(var itemList: MutableList<DeviceEntity>? = mutableListOf())
         TODO("Not yet implemented")
     }
 
+    override suspend fun getDeviceRById(deviceId: Int): Result<DeviceEntity> {
+        TODO("Not yet implemented")
+    }
+
     /**
      * To Fetch All Devices from Database*/
     override fun getDeviceList(): LiveData<List<DeviceEntity>> {

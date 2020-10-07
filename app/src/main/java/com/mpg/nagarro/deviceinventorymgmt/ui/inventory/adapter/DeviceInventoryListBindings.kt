@@ -2,10 +2,8 @@ package com.mpg.nagarro.deviceinventorymgmt.ui.inventory.adapter
 
 import android.annotation.SuppressLint
 import android.graphics.Color
-import android.util.Log
 import android.view.View
 import android.widget.CheckBox
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -39,7 +37,9 @@ fun isActive(checkBox: CheckBox, status: Int) {
 
 @BindingAdapter("app:isDateOver")
 fun changeAlertColor(viewGroup: View, deviceInventory: DeviceInventory) {
-    if (System.currentTimeMillis() > deviceInventory.returnDate.time) {
+    if ((System.currentTimeMillis() > deviceInventory.returnDate.time) &&
+        (deviceInventory.status == Utils.enumToIntDeviceStatus(DeviceStatus.ISSUED))
+    ) {
         viewGroup.setBackgroundColor(Color.parseColor("#9DCDB6"))
     } else
         viewGroup.setBackgroundColor(Color.parseColor("#00000000"))

@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.mpg.nagarro.deviceinventorymgmt.R
@@ -16,9 +15,10 @@ import com.mpg.nagarro.deviceinventorymgmt.util.hideKeyboard
 import com.mpg.nagarro.deviceinventorymgmt.util.observe
 import com.mpg.nagarro.deviceinventorymgmt.util.showSnackbar
 import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
+abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : DaggerFragment() {
 
     abstract val bindingVariable: Int
 
@@ -34,16 +34,20 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     abstract fun getViewModel(): Class<VM>
     abstract fun onCreateView(rootView: View)
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        /*
+     *  Remember in our FragmentModule, we
+     * defined MovieListFragment injection? So we need
+     * to call this method in order to inject the
+     * ViewModelFactory into our Fragment
+     * */
+        AndroidSupportInjection.inject(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        /*
-         *  Remember in our FragmentModule, we
-         * defined MovieListFragment injection? So we need
-         * to call this method in order to inject the
-         * ViewModelFactory into our Fragment
-         * */
-        AndroidSupportInjection.inject(this)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(getViewModel())
         handleObserver()

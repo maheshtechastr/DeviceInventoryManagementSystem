@@ -23,6 +23,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../Agnihotri/AstroStar-master/app/src/main/java/com/creative/astrostar/permissions/PermissionRequest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../AssignmentDemo/android-workmanager-start_kotlin/app/src/main/java/com/example/background/BlurViewModel.kt">
           <value>
             <set />
@@ -38,7 +43,42 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../AstroStar/app/src/main/java/com/creative/astrostar/viewModel/AllAstrologersViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../AstroStar/data/src/main/java/com/creative/data/remote/api/LoginApi.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../AstroStar/data/src/main/java/com/creative/data/remote/request/LoginRequest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../AstroStar/data/src/main/java/com/creative/data/repository/BaseRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../AstroStar/data/src/main/java/com/creative/data/repository/allAstrologer/AllAstrologerRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../AstroStar/domain/src/main/java/com/creative/domain/usecases/astrologers/AllAstrologersUseCaseImpl.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/build/generated/source/navigation-args/debug/com/mpg/nagarro/deviceinventorymgmt/ui/devices/DeviceListFragmentDirections.kt">
           <value>
             <set />
           </value>
@@ -104,6 +144,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/base/BaseViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/common/SharedViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mpg/nagarro/deviceinventorymgmt/common/SingleLiveEvent.kt">
           <value>
             <set />
           </value>
@@ -689,6 +739,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/test/java/com/mpg/nagarro/deviceinventorymgmt/ExampleUnitTest.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/test/java/com/mpg/nagarro/deviceinventorymgmt/LiveDataTestUtil.kt">
           <value>
             <set />
           </value>

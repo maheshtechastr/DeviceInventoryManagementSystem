@@ -37,7 +37,7 @@ class DeviceListViewModel @Inject constructor(private val repository: Repository
     }
 
     fun onItemClickedEvent() {
-
-        isItemClicked.value = Event(Unit)
+        Timber.i("Item Clicked in ViewModel")
+        isItemClicked.call()
     }
 }

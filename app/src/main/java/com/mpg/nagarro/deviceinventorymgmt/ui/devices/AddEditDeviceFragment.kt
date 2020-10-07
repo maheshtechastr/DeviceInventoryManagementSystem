@@ -14,7 +14,7 @@ import timber.log.Timber
 class AddEditDeviceFragment :
     BaseFragment<AddEditDeviceFragmentBinding, AddEditDeviceViewModel>() {
 
-    private val args: AddEditEmployeeFragmentArgs by navArgs()
+//    private val args: AddEditEmployeeFragmentArgs by navArgs()
 
     override val bindingVariable: Int
         get() = BR.viewModel

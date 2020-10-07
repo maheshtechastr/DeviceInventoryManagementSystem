@@ -1,6 +1,7 @@
 package com.mpg.nagarro.deviceinventorymgmt.ui.devices
 
 import android.view.View
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.mpg.nagarro.deviceinventorymgmt.BR
 import com.mpg.nagarro.deviceinventorymgmt.R
@@ -43,9 +44,9 @@ class DeviceListFragment : BaseFragment<DeviceListFragmentBinding, DeviceListVie
             viewDataBinding.root.showSnackbar(it)
 
         })
-        viewModel.isItemClicked.observe(viewLifecycleOwner, EventObserver {
+        viewModel.isItemClicked.observe(viewLifecycleOwner, Observer {
             Timber.e("Item Clicked--------")
-            view?.showToast("Item clocked------")
+            viewDataBinding.root.showSnackbar("Item clocked------")
         })
     }
 

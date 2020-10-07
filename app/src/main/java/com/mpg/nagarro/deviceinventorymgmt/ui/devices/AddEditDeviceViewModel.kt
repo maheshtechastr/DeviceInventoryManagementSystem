@@ -25,26 +25,24 @@ class AddEditDeviceViewModel
     fun addDevice() {
         val name = deviceName.value
         val inventory = totalInventory.value
-        Timber.d( "addDevice() name = $name called inventory = $inventory")
+        Timber.d("addDevice() name = $name called inventory = $inventory")
 
         if (Utils.isNullOrEmpty(name)) {
             showMessage.value = "Filled can't be empty"
             return
         }
 
-        val totalInventory = getDeviceCount(inventory)
+        val totalInventoryI = getDeviceCount(inventory)
+        totalInventory.value = totalInventoryI.toString()
+        val deviceEntity = DeviceEntity(name!!, totalInventoryI, totalInventoryI)
 
-        val deviceEntity = DeviceEntity(name!!, totalInventory, totalInventory)
-        addDevice(deviceEntity)
-    }
-
-    private fun addDevice(deviceEntity: DeviceEntity) {
         viewModelScope.launch {
             repository.addDevice(deviceEntity)
             showMessage.value = "Device saved!"
             _taskUpdatedEvent.postValue(Event(Unit))
         }
     }
+
 
     private fun getDeviceCount(totalC: String?): Int {
         return if (totalC == null || totalC.isEmpty())
@@ -80,10 +78,10 @@ class AddEditDeviceViewModel
         isLoading.value = true
 
         viewModelScope.launch {
-            repository.getDeviceRById(deviceId).let { result->
+            repository.getDeviceRById(deviceId).let { result ->
                 if (result is Result.Success) {
                     onTaskLoaded(result.data)
-                }else{
+                } else {
                     onDataNotAvailable()
                 }
             }
@@ -100,4 +98,5 @@ class AddEditDeviceViewModel
     private fun onDataNotAvailable() {
         isLoading.value = false
     }
+
 }

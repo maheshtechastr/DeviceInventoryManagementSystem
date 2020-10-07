@@ -58,6 +58,10 @@ class FakeAndroidTestRepository : Repository {
         TODO("Not yet implemented")
     }
 
+    override suspend fun getDeviceRById(deviceId: Int): Result<DeviceEntity> {
+        TODO("Not yet implemented")
+    }
+
     /**
      * To update Device information into Database*/
     override suspend fun updateDevice(deviceEntity: DeviceEntity) {

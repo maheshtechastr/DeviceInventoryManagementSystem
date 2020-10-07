@@ -5,6 +5,7 @@ import com.mpg.nagarro.deviceinventorymgmt.data.RepositoryImplTest
 import com.mpg.nagarro.deviceinventorymgmt.data.entity.DeviceEntity
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 
 class DeviceListViewModelTest{
     // Subject under test
@@ -27,5 +28,10 @@ class DeviceListViewModelTest{
         repository.addDevice(deviceEntity1, deviceEntity2, deviceEntity3)
 
         viewModel = AddEditDeviceViewModel(repository)
+    }
+
+    @Test
+    fun onAddNewDeviceClicked(){
+
     }
 }
